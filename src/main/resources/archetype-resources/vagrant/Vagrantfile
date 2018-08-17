@@ -10,7 +10,7 @@ CPUEXECUTIONCAP = 80
 
 RSYNC_EXCLUDES = [".git/",".idea/","target/"]
 
-HOSTNAME = "local-website1"
+HOSTNAME = "${configurationManagementName}-controlhost"
 
 # ssh port
 SSH_PORT = 22022
