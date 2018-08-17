@@ -1,0 +1,6 @@
+- name: "install required roles"
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Install requirements with Ansible Galaxy.
+      command: ansible-galaxy install -r requirements.yml --force

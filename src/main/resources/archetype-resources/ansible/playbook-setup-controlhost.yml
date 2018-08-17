@@ -1,0 +1,5 @@
+- name: "Setup ansible controlhost"
+  hosts: controlhost
+  become: true
+  roles:
+    - wcm_io_devops.conga_ansible_controlhost

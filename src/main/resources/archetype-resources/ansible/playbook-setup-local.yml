@@ -1,0 +1,4 @@
+# Setup dev environment with singlehost setup
+- import_playbook: include-setup-singlehost.yml
+  vars:
+    conga_environment: "local"

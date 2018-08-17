@@ -1,0 +1,3 @@
+# CentOS Ansible Authentication Parameters
+ansible_user: centos
+ansible_become: yes

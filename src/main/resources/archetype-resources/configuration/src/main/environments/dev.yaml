@@ -1,0 +1,107 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+# DEV Environment
+# 1 Author+Dispatcher and 1 Publisher+Dispatcher on a single machine
+
+# Application version to deploy on this environment
+dependencies:
+- mvn:${groupId}/${artifactId}.config-definition/${symbol_dollar}{maven::app.version.dev}
+
+nodes:
+
+- node: author-dev.website1.com
+  roles:
+  - role: ${projectName}-aem-cms-combined
+    variant: aem-author
+    config:
+      replication.author.flushTarget:
+        name: ${node}
+        url: https://${node}
+      replication.author.publishTargets:
+      - name: dev_website1_com
+        url: http://dev.website1.com:4503
+        transportUser: admin
+        transportPassword: ${quickstart.adminUser.password}
+  - role: aem-dispatcher
+    variants:
+    - aem-author
+    - ssl
+    config:
+      httpd:
+        serverName: ${node}
+      dispatcher:
+        cache:
+          rootPath: /var/cache/author1
+        renderInstance:
+          host: localhost
+          port: 4502
+
+- node: dev.website1.com
+  roles:
+  - role: ${projectName}-aem-cms-combined
+    variant: aem-publish
+    config:
+      replication.publish.flushTarget:
+        name: ${node}
+        url: https://${node}
+  - role: aem-dispatcher
+    variants:
+    - aem-publish
+    - ssl
+    config:
+      httpd:
+        serverName: ${node}
+      dispatcher:
+        cache:
+          rootPath: /var/cache/publish1
+          statFilesLevel: 1
+        renderInstance:
+          host: localhost
+          port: 4503
+
+config:
+  quickstart:
+    enableDavEx: true
+    adminUser:
+      password: #if($optionAnsible=="y")${symbol_dollar}{ansible-vault::vault_aem_admin_password}#else${aemAdminPassword}#end
+
+  jvm:
+    path: /usr/lib/jvm/jdk-8-oracle-x64
+    heapspace:
+      min: 2048m
+      max: 2048m
+    timezone: Europe/Berlin
+  httpd:
+    accessRestriction:
+#if( $accessRestrictionIpAddress && $accessRestrictionIpAddress != "0.0.0.0/0" )
+      adminAccessFromIp: #foreach( $ip in $accessRestrictionIpAddress.split(",") )$ip#if($foreach.hasNext) #end#end
+
+#end
+      dispatcherFlushFromIp: 127.0.0.1 #if($optionAnsible=="y")${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Name == 'dev_aem')].ec2_private_ip_address}#end
+
+    ssl:
+      certificateFile: /etc/ssl/certs/${node}.crt
+      certificateKeyFile: /etc/ssl/private/${node}.key
+      #caCertificatePath: /etc/ssl/certs
+      #caCertificateFile: /etc/ssl/certs/GeoTrust_SSL_CA_G2_Cert_bundle.pem
+      enforce: true
+  app:
+    sampleContent: true
+
+  # Force-Override site URLs in all site configs on the system
+  sling.caconfig.overrides:
+    "/content/${projectName}":
+    - io.wcm.handler.url.SiteConfig/siteUrl="http://dev.website1.com"
+    - io.wcm.handler.url.SiteConfig/siteUrlSecure="https://dev.website1.com"
+    - io.wcm.handler.url.SiteConfig/siteUrlAuthor="https://author-dev.website1.com"
+
+tenants:
+
+- tenant: dev.website1.com
+  config:
+    httpd:
+      serverAliasNames:
+      - dev.website1.com
+      rootRedirect.url: /en.html
+    sling.mapping.rootPath: /content/${projectName}

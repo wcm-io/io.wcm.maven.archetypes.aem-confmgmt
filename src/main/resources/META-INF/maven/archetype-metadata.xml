@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  wcm.io
+  %%
+  Copyright (C) 2018 wcm.io
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<archetype-descriptor xsi:schemaLocation="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0 http://maven.apache.org/xsd/archetype-descriptor-1.1.0.xsd"
+    xmlns="https://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    name="io.wcm.samples">
+
+  <requiredProperties>
+
+    <!-- *** basic properties *** -->
+    <!-- Project name from AEM project -->
+    <requiredProperty key="projectName">
+      <validationRegex>^[a-zA-Z0-9\-_]+$</validationRegex>
+    </requiredProperty>
+    <!-- Name of the configuration management project that is used for tagging the infrastructure -->
+    <!-- The rules for AWS S3 bucket names should be followed - only lowercase characters, numbers and hyphens allowed -->
+    <requiredProperty key="configurationManagementName">
+      <validationRegex>^[a-z0-9\-]+$</validationRegex>
+    </requiredProperty>
+    <!-- Maven artifact groupId from AEM project -->
+    <requiredProperty key="groupId">
+      <validationRegex>^[a-zA-Z0-9\.\-_]+$</validationRegex>
+    </requiredProperty>
+    <!-- Maven artifact "root" artifactId from AEM project, is suffixed for the individual modules -->
+    <requiredProperty key="artifactId">
+      <defaultValue>${groupId}.${projectName}</defaultValue>
+      <validationRegex>^[a-zA-Z0-9\.\-_]+$</validationRegex>
+    </requiredProperty>
+    <!-- Maven artifact version from the AEM project - e.g. 1.0.0-SNAPSHOT -->
+    <requiredProperty key="version">
+      <defaultValue>1.0.0-SNAPSHOT</defaultValue>
+      <validationRegex>^\d+(\.\d+){0,2}(\-SNAPSHOT)?$</validationRegex>
+    </requiredProperty>
+    <!-- Java class package name - this is not used for this archetype -->
+    <requiredProperty key="package">
+      <defaultValue>unused</defaultValue>
+      <validationRegex>^[a-z0-9\.]+$</validationRegex>
+    </requiredProperty>
+
+    <!-- *** credentials and security *** -->
+    <!-- URL to maven repository to fetch all artifacts from, including Adobe binaries and the AEM projects's artifact. This should not point to Maven Central. -->
+    <requiredProperty key="mavenRepositoryUrl">
+      <defaultValue>http://repo1.maven.org/maven2/</defaultValue>
+    </requiredProperty>
+    <!-- Username for maven repository -->
+    <requiredProperty key="mavenRepositoryUser">
+      <defaultValue>maven_user</defaultValue>
+    </requiredProperty>
+    <!-- Password for maven repository -->
+    <requiredProperty key="mavenRepositoryPassword">
+      <defaultValue>maven_password</defaultValue>
+    </requiredProperty>
+    <!-- Password for AEM "admin" user and felix console -->
+    <requiredProperty key="aemAdminPassword">
+      <defaultValue>admin</defaultValue>
+    </requiredProperty>
+    <!-- List of IP addresses or IP subnets to restrict access to when accessing the AEM infrastructure. You can specify multiple separated by ",". Example: 10.0.0.1/10,192.168.0.1 -->
+    <requiredProperty key="accessRestrictionIpAddress">
+      <defaultValue>0.0.0.0/0</defaultValue>
+      <validationRegex>^([0-9]{1,3}\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?(,([0-9]{1,3}\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?)*$</validationRegex>
+    </requiredProperty>
+    <!-- Password for Ansible Vault encryption of all sensitive data in repository -->
+    <requiredProperty key="ansibleVaultPassword">
+      <defaultValue>nopassword</defaultValue>
+    </requiredProperty>
+    <!-- AWS region -->
+    <requiredProperty key="awsRegion">
+      <defaultValue>eu-west-1</defaultValue>
+    </requiredProperty>
+
+    <!-- *** file references *** -->
+    <!-- SSH Public key that is used for authentication on the AWS machines -->
+    <requiredProperty key="sshPublicKeyFile">
+      <defaultValue>id_rsa.pub</defaultValue>
+    </requiredProperty>
+    <!-- AEM license.properties file -->
+    <requiredProperty key="aemLicensePropertiesFile">
+      <defaultValue>license.properties</defaultValue>
+    </requiredProperty>
+
+    <!-- *** feature flags *** -->
+    <!-- Include vagrant file to set up an Ansible control host in a local VM -->
+    <requiredProperty key="optionVagrant">
+      <defaultValue>y</defaultValue>
+      <validationRegex>^(y|n)$</validationRegex>
+    </requiredProperty>
+    <!-- Include Terraform definition to setup infrastructure on AWS -->
+    <requiredProperty key="optionTerraformAws">
+      <defaultValue>y</defaultValue>
+      <validationRegex>^(y|n)$</validationRegex>
+    </requiredProperty>
+    <!-- Include Ansible playbooks to deploy AEM infrastructure -->
+    <requiredProperty key="optionAnsible">
+      <defaultValue>y</defaultValue>
+      <validationRegex>^(y|n)$</validationRegex>
+    </requiredProperty>
+
+  </requiredProperties>
+
+  <fileSets>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>README.md</include>
+        <include>ansible/**</include>
+        <include>configuration/**</include>
+        <include>vagrant/**</include>
+        <include>terraform/**</include>
+      </includes>
+      <excludes>
+        <exclude>ansible/inventory/ec2.py</exclude>
+      </excludes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>.gitattributes</include>
+        <include>.gitignore</include>
+        <include>ansible/inventory/ec2.py</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+
+</archetype-descriptor>

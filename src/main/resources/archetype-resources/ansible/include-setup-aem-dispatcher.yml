@@ -1,0 +1,62 @@
+# Apply dispatcher roles
+- name: "setup author/publish webserver(s)/dispatcher(s)"
+  hosts: "&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}:&tag_conga_roles_aem-dispatcher:{{ host_pattern }}"
+  become: true
+  environment: "{{ proxy_env | default({}) }}"
+  pre_tasks:
+
+    - name: Set conga host facts
+      include_role:
+        name: wcm_io_devops.conga_host_facts
+
+    # Setup CONGA facts for the role aem-dispatcher so that
+    # we have access to the httpd port configuration
+    - conga_facts:
+        conga_role_mapping: aem-dispatcher
+
+    - set_fact:
+        # Save http and https port config aem-dispacher role for use by the aem-dispatcher role
+        aem_dispatcher_port: "{{ conga_config.httpd.serverPort | default(80) }}"
+        aem_dispatcher_port_ssl: "{{ conga_config.httpd.serverPortSsl | default(443) }}"
+
+    - name: generate self signed certificate (aem-author)
+      block:
+      - name:
+        set_fact:
+          key_path: "{{ playbook_dir }}/files/{{ conga_config.httpd.serverNameSsl }}.key"
+          crt_path: "{{ playbook_dir }}/files/{{ conga_config.httpd.serverNameSsl }}.crt"
+          crt_cn: "{{ conga_config.httpd.serverNameSsl }}"
+
+      - name: Create SSL key (aem-author)
+        shell: "openssl req -nodes -newkey rsa:2048 -keyout {{ key_path }} -subj '/CN={{ crt_cn }}' -out /dev/null"
+        args:
+          creates: "{{ key_path }}"
+
+      - name: Create SSL certificate (aem-author)
+        shell: "openssl req -x509 -days 365 -key {{ key_path }} -new -out {{ crt_path }} -subj '/CN={{ crt_cn }}'"
+        args:
+          creates: "{{ crt_path }}"
+      delegate_to: localhost
+      become: no
+      when: "'aem-author' in conga_variants"
+
+    - name: generate self signed certificate (aem-publish)
+      block:
+      - name: Create SSL key (aem-publish)
+        shell: "openssl req -nodes -newkey rsa:2048 -keyout {{ playbook_dir }}/files/{{ item.config.httpd.serverNameSsl }}.key -subj '/CN={{ item.config.httpd.serverNameSsl }}' -out /dev/null"
+        args:
+          creates: "{{ playbook_dir }}/files/{{ item.config.httpd.serverNameSsl }}.key"
+        with_items: "{{ conga_tenants }}"
+
+      - name: Create SSL certificate (aem-publish)
+        shell: "openssl req -x509 -days 365 -key {{ playbook_dir }}/files/{{ item.config.httpd.serverNameSsl }}.key -new -out {{ playbook_dir }}/files/{{ item.config.httpd.serverNameSsl }}.crt -subj '/CN={{ item.config.httpd.serverNameSsl }}'"
+        args:
+          creates: "{{ playbook_dir }}/files/{{ item.config.httpd.serverNameSsl }}.crt"
+        with_items: "{{ conga_tenants }}"
+      delegate_to: localhost
+      become: no
+      when: "'aem-publish' in conga_variants"
+
+  roles:
+    - wcm_io_devops.aem_dispatcher
+    - wcm_io_devops.conga_aem_dispatcher

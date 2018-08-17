@@ -1,0 +1,14 @@
+- name: "run dispatcher smoke tests for author webserver/dispatcher"
+  hosts: "&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}:&tag_conga_roles_aem-dispatcher:{{ host_pattern }}"
+  environment: "{{ proxy_env | default({}) }}"
+  gather_facts: no
+  vars:
+    - conga_role_mapping: aem-dispatcher
+  pre_tasks:
+    - name: Set conga host facts
+      include_role:
+        name: wcm_io_devops.conga_host_facts
+
+  roles:
+    - wcm_io_devops.conga_aem_dispatcher_smoke_test
+

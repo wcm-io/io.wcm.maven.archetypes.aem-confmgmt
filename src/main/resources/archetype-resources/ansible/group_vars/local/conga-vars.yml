@@ -1,0 +1,15 @@
+conga_roles:
+  - aem-cms
+  - aem-dispatcher
+
+conga_variants:
+  - aem-author
+  - aem-publish
+
+conga_nodes:
+  - author.local-website1
+  - local-website1
+
+conga_variant_node_mapping:
+    - "aem-author=author.local-website1"
+    - "aem-publish=local-website1"

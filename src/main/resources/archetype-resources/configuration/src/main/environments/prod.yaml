@@ -1,0 +1,113 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+# PROD Environment
+# 1 Author+Dispatcher and 2 Publish+Dispatcher on 3 machines
+
+# Application version to deploy on this environment
+dependencies:
+- mvn:${groupId}/${artifactId}.config-definition/${symbol_dollar}{maven::app.version.prod}
+
+nodes:
+
+- node: author.website1.com
+  roles:
+  - role: ${projectName}-aem-cms-combined
+    variant: aem-author
+    config:
+      replication.author.flushTarget:
+        name: ${node}
+        url: https://${node}
+      replication.author.publishTargets:
+      - name: publish1.website1.com
+        url: http://publish1.website1.com:4503
+        transportUser: admin
+        transportPassword: ${quickstart.adminUser.password}
+      - name: publish2.website1.com
+        url: http://publish2.website1.com:4503
+        transportUser: admin
+        transportPassword: ${quickstart.adminUser.password}
+  - role: aem-dispatcher
+    variants:
+    - aem-author
+    - ssl
+    config:
+      httpd:
+        serverName: ${node}
+        accessRestriction:
+          dispatcherFlushFromIp: 127.0.0.1 #if($optionAnsible=="y")${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Name == 'prod_author1')].ec2_private_ip_address}#end
+
+        ssl:
+          certificateFile: /etc/ssl/certs/${node}.crt
+          certificateKeyFile: /etc/ssl/private/${node}.key
+      dispatcher:
+        cache:
+          rootPath: /var/cache/author1
+        renderInstance:
+          host: localhost
+          port: 4502
+
+- nodes:
+  - publish1.website1.com
+  - publish2.website1.com
+  roles:
+  - role: ${projectName}-aem-cms-combined
+    variant: aem-publish
+    config:
+      replication.publish.flushTarget:
+        name: ${node}
+        url: https://${node}
+  - role: aem-dispatcher
+    variants:
+    - aem-publish
+    - ssl
+    config:
+      dispatcher:
+        cache:
+          rootPath: /var/cache/publish
+          statFilesLevel: 2
+        renderInstance:
+          host: localhost
+          port: 4503
+      httpd:
+        ssl:
+          certificateFile: /etc/ssl/certs/website1.com.crt
+          certificateKeyFile: /etc/ssl/private/website1.com.key
+
+config:
+  quickstart:
+    enableDavEx: true
+    adminUser:
+      password: #if($optionAnsible=="y")${symbol_dollar}{ansible-vault::vault_aem_admin_password}#else${aemAdminPassword}#end
+
+  jvm:
+    path: /usr/lib/jvm/jdk-8-oracle-x64
+    heapspace:
+      min: 3072m
+      max: 3072m
+    timezone: Europe/Berlin
+  httpd:
+    accessRestriction:
+#if( $accessRestrictionIpAddress && $accessRestrictionIpAddress != "0.0.0.0/0" )
+      adminAccessFromIp: #foreach( $ip in $accessRestrictionIpAddress.split(",") )$ip#if($foreach.hasNext) #end#end
+
+#end
+      dispatcherFlushFromIp: 127.0.0.1
+    ssl:
+      enforce: true
+  app:
+    sampleContent: true
+
+tenants:
+
+- tenant: website1.com
+  config:
+    httpd:
+      serverAliasNames:
+      - website1.com
+      - www.website1.com
+      rootRedirect.url: /en.html
+      accessRestriction:
+        dispatcherFlushFromIp: 127.0.0.1 #if($optionAnsible=="y")${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Name == 'prod_publish1')].ec2_private_ip_address} ${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Name == 'prod_publish2')].ec2_private_ip_address}#end
+
+    sling.mapping.rootPath: /content/${projectName}

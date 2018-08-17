@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.wcm.maven</groupId>
+    <artifactId>io.wcm.maven.aem-global-parent</artifactId>
+    <version>1.2.24</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>${groupId}</groupId>
+  <artifactId>${artifactId}.configuration-management</artifactId>
+  <version>1-SNAPSHOT</version>
+  <packaging>config</packaging>
+
+  <properties>
+
+    <!-- deployment to DEVELOPMENT TEST system -->
+    <app.version.dev>${version}</app.version.dev>
+
+    <!-- deployment to PRODUCTION system -->
+    <app.version.prod>${version}</app.version.prod>
+
+    <!-- deployment to LOCAL TEST system (e.g. Vagrant) -->
+    <app.version.local>${version}</app.version.local>
+
+  </properties>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>io.wcm.devops.conga</groupId>
+        <artifactId>conga-maven-plugin</artifactId>
+        <extensions>true</extensions>
+#if ($optionAnsible == "y")
+        <configuration>
+          <valueProvider>
+            ansible-vault;file=${project.basedir}/../ansible/group_vars/all/vault_credentials.yml,
+            ansible-inventory;file=${project.basedir}/../ansible/inventory/ec2.py
+          </valueProvider>
+          <pluginConfig>
+            aem-plugin;cryptoAesKeyUrl=ansible-vault:classpath:/crypto/master
+          </pluginConfig>
+        </configuration>
+#end
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

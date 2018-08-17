@@ -1,0 +1,14 @@
+- name: "Flush dispatcher(s) for {{ host_pattern }}"
+  hosts: "&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}:&tag_conga_roles_aem-cms:{{ host_pattern }}"
+  vars:
+    conga_role_mapping: aem-cms
+  tags:
+    - aem-dispatcher-flush
+
+  pre_tasks:
+    - name: Set conga host facts
+      include_role:
+        name: wcm_io_devops.conga_host_facts
+
+  roles:
+    - wcm_io_devops.conga_aem_dispatcher_flush

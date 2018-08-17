@@ -1,0 +1,105 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+# DEV Vatrant Environment
+# 1 Author+Dispatcher and 1 Publisher+Dispatcher on a single machine
+
+# Application version to deploy on this environment
+dependencies:
+- mvn:${groupId}/${artifactId}.config-definition/${symbol_dollar}{maven::app.version.local}
+
+nodes:
+
+- node: author.local-website1
+  roles:
+  - role: ${projectName}-aem-cms-combined
+    variant: aem-author
+    config:
+      replication.author.flushTarget:
+        name: ${node}
+        url: https://${node}:${httpd.serverPortSsl}
+      replication.author.publishTargets:
+      - name: local-website1
+        url: http://local-website1:4503
+        transportUser: admin
+        transportPassword: ${quickstart.adminUser.password}
+  - role: aem-dispatcher
+    variants:
+    - aem-author
+    - ssl
+    config:
+      httpd:
+        serverName: ${node}
+      dispatcher:
+        cache:
+          rootPath: /var/cache/author1
+        renderInstance:
+          host: localhost
+          port: 4502
+
+- node: local-website1
+  roles:
+  - role: ${projectName}-aem-cms-combined
+    variant: aem-publish
+    config:
+      replication.publish.flushTarget:
+        name: ${node}
+        url: https://${node}:${httpd.serverPortSsl}
+  - role: aem-dispatcher
+    variants:
+    - aem-publish
+    - ssl
+    config:
+      httpd:
+        serverName: ${node}
+      dispatcher:
+        cache:
+          rootPath: /var/cache/publish1
+          statFilesLevel: 1
+        renderInstance:
+          host: localhost
+          port: 4503
+
+config:
+  quickstart:
+    enableDavEx: true
+    adminUser:
+      password: #if($optionAnsible=="y")${symbol_dollar}{ansible-vault::vault_aem_admin_password}#else${aemAdminPassword}#end
+
+  jvm:
+    path: /usr/lib/jvm/jdk-8-oracle-x64
+    heapspace:
+      min: 2048m
+      max: 2048m
+    timezone: Europe/Berlin
+  httpd:
+    # Server ports
+    serverPort: 8080
+    serverPortSsl: 8443
+    # access restrictions
+    accessRestriction:
+      adminAccessFromIp: 127.0.0.1
+      dispatcherFlushFromIp: 127.0.0.1
+    ssl:
+      certificateFile: /etc/ssl/certs/${node}.crt
+      certificateKeyFile: /etc/ssl/private/${node}.key
+      #caCertificatePath: /etc/ssl/certs
+      #caCertificateFile: /etc/ssl/certs/GeoTrust_SSL_CA_G2_Cert_bundle.pem
+      enforce: true
+  app:
+    sampleContent: true
+
+  # Force-Override site URLs in all site configs on the system
+  sling.caconfig.overrides:
+    "/content/${projectName}":
+    - io.wcm.handler.url.SiteConfig/siteUrl="http://local-website1:8080"
+    - io.wcm.handler.url.SiteConfig/siteUrlSecure="https://local-website1:8443"
+    - io.wcm.handler.url.SiteConfig/siteUrlAuthor="https://author.local-website1:8443"
+
+tenants:
+
+- tenant: local-website1
+  config:
+    httpd:
+      rootRedirect.url: /en.html
+    sling.mapping.rootPath: /content/${projectName}

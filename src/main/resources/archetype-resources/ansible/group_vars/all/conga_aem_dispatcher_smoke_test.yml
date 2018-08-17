@@ -1,0 +1,2 @@
+# allow self signed certificates for dispatcher flush
+conga_aemdst_curl_allow_insecure: true

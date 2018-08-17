@@ -1,0 +1,42 @@
+# Generate the json inventory for conga and update host file on target systems
+- import_playbook: include-prepare-inventory.yml
+
+# compile conga configuration
+- import_playbook: include-conga-maven.yml
+
+# Apply AEM author and publish roles
+- import_playbook: include-setup-aem-cms.yml
+  vars:
+    host_pattern: "tag_conga_variants_aem-author:tag_conga_variants_aem-publish"
+  tags:
+    - aem-cms
+
+# Apply aem-author dispatcher roles
+- import_playbook: include-setup-aem-dispatcher.yml
+  vars:
+    host_pattern: "tag_conga_variants_aem-author:tag_conga_variants_aem-publish"
+  tags:
+    - aem-dispatcher
+
+# flush author and publish dispatcher(s)
+- import_playbook: include-aem-dispatcher-flush.yml
+  vars:
+    host_pattern: "tag_conga_variants_aem-author:tag_conga_variants_aem-publish"
+  tags:
+    - aem-dispatcher-flush
+
+# run smoke tests for author and publish dispatcher(s)
+- import_playbook: include-smoke-tests-aem-dispatcher.yml
+  vars:
+    host_pattern: "tag_conga_variants_aem-author:tag_conga_variants_aem-publish"
+  tags:
+    - aem-dispatcher-smoke-test
+    - smoke-test
+
+# run smoke tests on aem-author
+- import_playbook: include-smoke-tests-aem-cms.yml
+  vars:
+    host_pattern: "tag_conga_variants_aem-author:tag_conga_variants_aem-publish"
+  tags:
+    - aem-cms-smoke-test
+    - smoke-test

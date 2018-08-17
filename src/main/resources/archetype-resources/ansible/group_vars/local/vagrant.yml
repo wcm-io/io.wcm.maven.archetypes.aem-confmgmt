@@ -1,0 +1,3 @@
+# vagrant authentication Parameters
+ansible_ssh_user: vagrant
+ansible_ssh_pass: vagrant

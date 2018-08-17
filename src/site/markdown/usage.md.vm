@@ -1,0 +1,14 @@
+## Maven Archetype for AEM Configuration Management usage
+
+### Basic usage
+
+Generate a new AEM configuration management project using interactive mode by executing:
+
+```
+mvn archetype:generate \
+  -DarchetypeGroupId=io.wcm.maven.archetypes \
+  -DarchetypeArtifactId=io.wcm.maven.archetypes.aem \
+  -DarchetypeVersion=${project.properties['releasedVersion.version']}
+```
+
+...

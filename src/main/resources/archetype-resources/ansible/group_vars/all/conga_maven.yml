@@ -1,0 +1,2 @@
+# set path to conga configuration for wcm_io_devops.conga_maven
+conga_basedir: "{{ playbook_dir }}/../configuration"

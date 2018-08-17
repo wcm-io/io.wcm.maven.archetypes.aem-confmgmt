@@ -1,0 +1,2 @@
+# URL to maven repository to fetch all artifacts from, including Adobe binaries and the AEM projects's artifact. This should not point to Maven Central.
+maven_repository_url: ${mavenRepositoryUrl}

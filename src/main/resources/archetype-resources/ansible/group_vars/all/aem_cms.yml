@@ -1,0 +1,16 @@
+# configure wcm_io_devops.aem_cms
+# aem-cms
+aem_cms_version: 6.4.0
+aem_cms_version_short: 6.4
+
+# Download aem-cms quickstart from nexus
+aem_cms_install_source: nexus
+aem_cms_nexus_coordinates:
+- {
+    group_id: adobe.binary.aem.64.quickstart,
+    artifact_id: aem-quickstart,
+    repository_url: "{{ maven_repository_url }}"
+  }
+
+aem_cms_nexus_password: "{{ vault_maven_repository_password }}"
+aem_cms_nexus_username: "{{ vault_maven_repository_username }}"

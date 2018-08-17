@@ -1,0 +1,11 @@
+- name: "compile conga configuration"
+  hosts: localhost
+  gather_facts: no
+  tags:
+    - conga-maven
+  roles:
+    - {
+        role: wcm_io_devops.conga_maven,
+        # only run when conga configuration was not generated before
+        when: (conga_configuration_generated is undefined) or (conga_configuration_generated == "false")
+      }

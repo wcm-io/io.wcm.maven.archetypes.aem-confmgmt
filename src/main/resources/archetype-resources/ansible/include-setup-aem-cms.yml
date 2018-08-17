@@ -1,0 +1,42 @@
+# Apply AEM author & publish roles
+- name: "setup author/publish roles for: {{ host_pattern }}"
+  hosts: "&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}:&tag_conga_roles_aem-cms:{{ host_pattern }}"
+  become: true
+  environment: "{{ proxy_env | default({}) }}"
+  pre_tasks:
+    - name: Set conga host facts
+      include_role:
+        name: wcm_io_devops.conga_host_facts
+
+    # Setup CONGA facts for the role aem-cms so that
+    # a) we have access to the port and conga_basedir below
+    # b) the aem-cms role can resolve conga_variant without knowing about CONGA
+    - conga_facts:
+        conga_role_mapping: aem-cms
+
+    - set_fact:
+        # Save port config and variant from the aem-cms role for use by the *-packages roles
+        conga_aem_packages_port: "{{ conga_config.quickstart.port }}"
+        aem_cms_home: "{{ conga_config.quickstart.rootPath }}"
+
+  roles:
+    - { role: geerlingguy.swap, swap_file_size_mb: '1024' }
+    - {
+        role: wcm_io_devops.aem_cms,
+        tags: ['dev.aem_cms']
+      }
+    - {
+        role: wcm_io_devops.conga_aem_cms,
+        tags: ['dev.conga-aem-cms']
+      }
+    # Configuration and application packages
+    - {
+        role: wcm_io_devops.conga_aem_packages,
+        conga_role_mapping: ${configurationManagementName}-aem-cms,
+        tags: ['dev.conga_aem_packages']
+      }
+    - {
+        role: wcm_io_devops.conga_aem_packages,
+        conga_role_mapping: ${configurationManagementName}-aem-cms-combined,
+        tags: ['dev.conga_aem_packages']
+      }

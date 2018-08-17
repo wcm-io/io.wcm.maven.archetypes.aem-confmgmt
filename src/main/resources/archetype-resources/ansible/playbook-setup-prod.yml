@@ -1,0 +1,4 @@
+# Setup dev environment with singlehost setup
+- import_playbook: include-setup-multihost.yml
+  vars:
+    conga_environment: "prod"

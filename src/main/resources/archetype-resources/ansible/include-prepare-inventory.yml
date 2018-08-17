@@ -1,0 +1,58 @@
+- name: "generate inventory (ec2)"
+  hosts: "&ec2:&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}"
+  gather_facts: no
+  become: no
+  tags:
+    - prepare-inventory
+  tasks:
+    - name: "Setup ip conga_node mapping list"
+      set_fact:
+        conga_node_ip_mapping_private: []
+        conga_node_ip_mapping_public: []
+
+    - block:
+        - name: "Get ec2 instance facts"
+          ec2_instance_facts:
+            filters:
+              instance-state-name: running
+              "tag:Role": aem
+            region: "{{ aws_region }}"
+          register: ec2_facts_aem
+
+        - name: "Add ip addresses of env {{ conga_environment }} to conga_node_ip_mapping_private and conga_node_ip_mapping_public"
+          set_fact:
+            conga_node_ip_mapping_private: "{{ conga_node_ip_mapping_private }} + ['{{ item.private_ip_address }}\t{{ item.tags.conga_nodes.split(',') | join(' ') }} {{ item.tags.conga_tenants.split(',') | join(' ') }}']"
+            conga_node_ip_mapping_public: "{{ conga_node_ip_mapping_public }} + ['{{ item.public_ip_address }}\t{{ item.tags.conga_nodes.split(',') | join(' ') }} {{ item.tags.conga_tenants.split(',') | join(' ') }}']"
+          with_items: "{{ ec2_facts_aem.instances }}"
+          when: item.tags.Env == conga_environment
+
+        - name: Write hostfile info to controlhost
+          copy:
+            content: "{{ conga_node_ip_mapping_public | join('\n') }}"
+            dest: "{{ playbook_dir }}/files/tmp/hosts_{{ conga_environment }}"
+
+      delegate_to: localhost
+      run_once: True
+
+    - name: Update hosts file on target systems
+      blockinfile:
+        path: /etc/hosts
+        block: "{{ conga_node_ip_mapping_private | join('\n') }}"
+        marker: "# {mark} conga_node to ip mapping - ANSIBLE MANAGED BLOCK"
+
+- name: "generate inventory (vagrant)"
+  hosts: "&local:&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}"
+  gather_facts: no
+  become: yes
+  tags:
+    - prepare-inventory
+  tasks:
+    - name: "Setup ip conga_node mapping list"
+      set_fact:
+        conga_node_ip_mapping_private: []
+
+    - name: update hosts file
+      blockinfile:
+        path: /etc/hosts
+        block: "127.0.0.1 {{ conga_nodes | join(' ') }}"
+        marker: "# {mark} conga_node to ip mapping - ANSIBLE MANAGED BLOCK"
