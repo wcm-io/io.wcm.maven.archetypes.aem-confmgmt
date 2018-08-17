@@ -32,11 +32,11 @@
     # Configuration and application packages
     - {
         role: wcm_io_devops.conga_aem_packages,
-        conga_role_mapping: ${configurationManagementName}-aem-cms,
+        conga_role_mapping: ${projectName}-aem-cms,
         tags: ['dev.conga_aem_packages']
       }
     - {
         role: wcm_io_devops.conga_aem_packages,
-        conga_role_mapping: ${configurationManagementName}-aem-cms-combined,
+        conga_role_mapping: ${projectName}-aem-cms-combined,
         tags: ['dev.conga_aem_packages']
       }
