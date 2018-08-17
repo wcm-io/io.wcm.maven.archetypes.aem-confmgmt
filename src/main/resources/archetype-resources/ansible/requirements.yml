@@ -43,7 +43,7 @@
 - src: https://github.com/wcm-io-devops/ansible-conga-bundle-files.git
   name: wcm_io_devops.conga_bundle_files
   scm: git
-  version: 2c5744703d4d378f85d71a5b5d33f536a50ce323
+  version: 2ab0e2b8c70f1aabe5a5e7aa1bdac6397a490fd0
 - src: https://github.com/wcm-io-devops/ansible-conga-aem-dispatcher.git
   name: wcm_io_devops.conga_aem_dispatcher
   scm: git
@@ -59,11 +59,11 @@
 - src: https://github.com/wcm-io-devops/ansible-conga-aem-packages.git
   name: wcm_io_devops.conga_aem_packages
   scm: git
-  version: 97d15e6b95af84ab68954026f63554c502074e2e
+  version: 01c1261825ff6c5911b6cf649756bc23731cec92
 - src: https://github.com/wcm-io-devops/ansible-conga-aem-smoke-test.git
   name: wcm_io_devops.conga_aem_smoke_test
   scm: git
-  version: 465a7600f61b72acc19b2791558277b7e315554f
+  version: a9e99b5084813d5605859dc4e2ffd2a7ed540727
 - src: https://github.com/wcm-io-devops/ansible-conga-ansible-controlhost.git
   name: wcm_io_devops.conga_ansible_controlhost
   scm: git
@@ -75,7 +75,7 @@
 - src: https://github.com/wcm-io-devops/ansible-conga-facts.git
   name: wcm_io_devops.conga_facts
   scm: git
-  version: b9c76c6396bd85326a89adcfbda14a7dee6f582a
+  version: 7b0df959ead75552910296470127e116ad16ccef
 - src: https://github.com/wcm-io-devops/ansible-conga-files.git
   name: wcm_io_devops.conga_files
   scm: git
