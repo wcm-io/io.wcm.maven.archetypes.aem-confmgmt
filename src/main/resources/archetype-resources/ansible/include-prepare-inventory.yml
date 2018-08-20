@@ -16,6 +16,7 @@
             filters:
               instance-state-name: running
               "tag:Role": aem
+              "tag:Project": "${configurationManagementName}"
             region: "{{ aws_region }}"
           register: ec2_facts_aem
 
