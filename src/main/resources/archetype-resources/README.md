@@ -12,7 +12,9 @@ This is a "configuration management" project for deploying the AEM application "
 #if( $optionTerraform=="y" )
 * [Terraform Definition][terraform-folder]: defines the AWS infrastructure to deploy to
 #end
+#if( $optionAnsible=="y" )
 * [Ansible Playbooks][ansible-folder]: Ansible playbooks used to provision and deploy the AEM infrastructure
+#end
 #if( $optionVagrant=="y" )
 * [Vagrant Environment][vagrant-folder]: Local vagrant environment that can be used as local Ansible control host and deployment target
 #end
@@ -26,11 +28,16 @@ The AEM application with this CONGA configuration definitions is deployed (the a
 
 Additionally Adobe AEM binaries need to be deployed to the Maven Repository. These are not available in the public Adobe or Maven Central repositories, you need to deploy them into your own Maven Repository following [these naming conventions][aem-binaries-conventions]. You need to deploy the following artifacts:
 
+#if( $optionAnsible=="y" )
 * AEM Quickstart JAR
+#end
 * Any AEM Service Pack/Feature Pack/Hotfix that is references in your project's configuration definition
+#if( $optionAnsible=="y" )
 * AEM Dispatcher binary files for your environment
+#end
 
 
+#if( $optionAnsible=="y" )
 ${symbol_pound}${symbol_pound} Setup AEM infrastructure
 
 ${symbol_pound}${symbol_pound}${symbol_pound} 1. Prepare Ansible control host
@@ -116,11 +123,14 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Teardown AWS Infrastructure using 
 
 * Execute the teardown steps from [Terraform Definition][terraform-folder-teardown] on the Ansible control host
 #end
+#end
 
 
+#if( $optionAnsible=="y" )
 [ansible-folder]: ansible
 [ansible-folder-ansible-control-host]: ansible/ansible-control-host-README.md
 [ansible-folder-execute-playbooks]: ansible${symbol_pound}execute-playbooks
+#end
 [configuration-folder]: configuration
 #if( $optionTerraform=="y" )
 [terraform-folder]: terraform
