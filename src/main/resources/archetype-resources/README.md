@@ -9,12 +9,13 @@ ${symbol_pound}${symbol_pound} Overview
 This is a "configuration management" project for deploying the AEM application "${projectName}" to AEM infrastructure using [CONGA][conga] and the [wcm.io DevOps Ansible Integration][wcmio-devops-ansible]. It consists of the following parts:
 
 * [CONGA configuration][configuration-folder]: defines the environments and AEM configuration and artifacts to deploy
+#if( $optionTerraform=="y" )
 * [Terraform Definition][terraform-folder]: defines the AWS infrastructure to deploy to
+#end
 * [Ansible Playbooks][ansible-folder]: Ansible playbooks used to provision and deploy the AEM infrastructure
 #if( $optionVagrant=="y" )
 * [Vagrant Environment][vagrant-folder]: Local vagrant environment that can be used as local Ansible control host and deployment target
 #end
-
 
 ${symbol_pound}${symbol_pound} Prepare Maven Repository
 
@@ -50,9 +51,15 @@ ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} Use existing machin
 * Load SSH key accessing the AWS machines in your SSH agent or Putty Pageant
 
 
+#if( $optionTerraform=="y" )
 ${symbol_pound}${symbol_pound}${symbol_pound} 2. Setup AWS infrastructure using Terraform
 
 * Execute the setup steps from [Terraform Definition][terraform-folder-setup] on the Ansible control host
+#else
+${symbol_pound}${symbol_pound}${symbol_pound} 2. Apply IP addresses for AEM infrastructure
+
+* TODO: describe process
+#end
 
 
 ${symbol_pound}${symbol_pound}${symbol_pound} 3. Run Ansible playbooks for deployment
@@ -102,25 +109,27 @@ LOCAL environment (via Vagrant box):
 
 #end
 
+#if( $optionTerraform=="y" )
 ${symbol_pound}${symbol_pound} Teardown AEM infrastructure
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Teardown AWS Infrastructure using Terraform
 
 * Execute the teardown steps from [Terraform Definition][terraform-folder-teardown] on the Ansible control host
-
+#end
 
 
 [ansible-folder]: ansible
 [ansible-folder-ansible-control-host]: ansible/ansible-control-host-README.md
 [ansible-folder-execute-playbooks]: ansible${symbol_pound}execute-playbooks
 [configuration-folder]: configuration
+#if( $optionTerraform=="y" )
 [terraform-folder]: terraform
 [terraform-folder-setup]: terraform${symbol_pound}setup
 [terraform-folder-teardown]: terraform${symbol_pound}teardown
+#end
 #if( $optionVagrant=="y" )
 [vagrant-folder]: vagrant
 #end
-
 [conga]: http://devops.wcm.io/conga/
 [wcmio-devops-ansible]: http://devops.wcm.io/ansible.html
 [aem-binaries-conventions]: https://wcm-io.atlassian.net/wiki/x/AYC9Aw
