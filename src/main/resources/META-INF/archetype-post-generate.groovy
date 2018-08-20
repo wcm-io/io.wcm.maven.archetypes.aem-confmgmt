@@ -78,6 +78,7 @@ if (optionTerraformAws == "n") {
 // remove Vagrant files if not required
 if (optionVagrant == "n") {
   assert new File(rootDir, "vagrant").deleteDir()
+  assert new File(rootDir, "ansible/group_vars/local/vagrant.yml").delete()
 }
 
 // remove Ansible files if not required

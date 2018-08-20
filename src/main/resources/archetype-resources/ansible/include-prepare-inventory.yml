@@ -41,7 +41,7 @@
         block: "{{ conga_node_ip_mapping_private | join('\n') }}"
         marker: "# {mark} conga_node to ip mapping - ANSIBLE MANAGED BLOCK"
 
-- name: "generate inventory (vagrant)"
+- name: "generate inventory (local)"
   hosts: "&local:&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}"
   gather_facts: no
   become: yes

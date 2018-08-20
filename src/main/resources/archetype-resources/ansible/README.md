@@ -11,9 +11,12 @@ The [Ansible Playbooks][ansible-playbooks] describe the deployment tasks to prov
 
 ${symbol_pound}${symbol_pound} Requirements
 
-The playbooks have to be executed on the Ansible Control Host. You have two alternatives for setting it up:
+The playbooks have to be executed on the Ansible Control Host. #if( $optionVagrant=="y" )You have two alternatives for setting it up:#end
 
+
+#if( $optionVagrant=="y" )
 * Setting up a preconfigured [Vagrant Environment][vagrant-folder]
+#end
 * Setting up an existing machine as [Ansible Control Host][ansible-folder-ansible-control-host]
 
 
@@ -36,6 +39,8 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Setup LOCAL environment (e.g. in V
 
 
 [ansible-folder-ansible-control-host]: ansible-control-host-README.md
+#if( $optionVagrant=="y" )
 [vagrant-folder]: vagrant
+#end
 [ansible-playbooks]: https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
 [ansible-galaxy-wcm-io-devops]: https://galaxy.ansible.com/wcm_io_devops
