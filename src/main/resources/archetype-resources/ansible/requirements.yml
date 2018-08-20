@@ -31,7 +31,7 @@
 - src: https://github.com/wcm-io-devops/ansible-aem-security.git
   name: wcm_io_devops.aem_security
   scm: git
-  version: b03786571b9e75e8215d7d5d4bbf6915a665938d
+  version: 14e6c5ffa322b11ca4f8bf5c381491297140a615
 - src: https://github.com/wcm-io-devops/ansible-aem-service.git
   name: wcm_io_devops.aem_service
   scm: git
