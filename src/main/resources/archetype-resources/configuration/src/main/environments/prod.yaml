@@ -35,7 +35,8 @@ nodes:
       httpd:
         serverName: ${node}
         accessRestriction:
-          dispatcherFlushFromIp: 127.0.0.1#if($optionAnsible=="y") ${stringUtils:join(inventory.authorHosts,' ')}#end
+          dispatcherFlushFromIp: 127.0.0.1#if($optionAnsible=="y") ${symbol_dollar}{stringUtils:join(inventory.authorHosts,' ')}#end
+
         ssl:
           certificateFile: /etc/ssl/certs/${node}.crt
           certificateKeyFile: /etc/ssl/private/${node}.key
@@ -112,5 +113,6 @@ tenants:
       - www.website1.com
       rootRedirect.url: /en.html
       accessRestriction:
-        dispatcherFlushFromIp: 127.0.0.1#if($optionAnsible=="y") ${stringUtils:join(inventory.publishHosts,' ')}#end
+        dispatcherFlushFromIp: 127.0.0.1#if($optionAnsible=="y") ${symbol_dollar}{stringUtils:join(inventory.publishHosts,' ')}#end
+
     sling.mapping.rootPath: /content/aem-fe-archetype
