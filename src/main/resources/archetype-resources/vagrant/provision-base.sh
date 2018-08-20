@@ -15,17 +15,18 @@ NC='\033[0m' # No Color
 
 # check if required files are present
 if [ ! -f "$ANSIBLE_VAULT_PASS_SRC" ]; then
- echo ' ______ _____  _____   ____  _____'
- echo '|  ____|  __ \|  __ \ / __ \|  __ \'
- echo '| |__  | |__) | |__) | |  | | |__) |'
- echo '|  __| |  _  /|  _  /| |  | |  _  / '
- echo '| |____| | \ \| | \ \| |__| | | \ \ '
- echo '|______|_|  \_\_|  \_\\____/|_|  \_\'
- echo -e "${EC}"
- echo "Ansible .vault_pass file not found!"
- echo "Make sure to place/configure the file '.vault_pass' below 'vagrant/shared'"
- echo -e "${NC}"
- exit 1
+  echo ' ______ _____  _____   ____  _____'
+  echo '|  ____|  __ \|  __ \ / __ \|  __ \'
+  echo '| |__  | |__) | |__) | |  | | |__) |'
+  echo '|  __| |  _  /|  _  /| |  | |  _  / '
+  echo '| |____| | \ \| | \ \| |__| | | \ \ '
+  echo '|______|_|  \_\_|  \_\\____/|_|  \_\'
+  echo -e "${EC}"
+  echo "Ansible .vault_pass file not found!"
+  echo "Make sure to place/configure the file '.vault_pass' at 'vagrant/shared'."
+  echo "See README.md for details."
+  echo -e "${NC}"
+  exit 1
 fi
 
 if [ ! -f "$AWS_CREDENTIALS_SRC" ]; then
@@ -37,7 +38,8 @@ if [ ! -f "$AWS_CREDENTIALS_SRC" ]; then
   echo '|______|_|  \_\_|  \_\\____/|_|  \_\'
   echo -e "${EC}"
   echo "AWS credentials file not found!"
-  echo "Make sure to place/configure the file 'credentials' below 'vagrant/shared'"
+  echo "Make sure to place/configure the file 'credentials' at 'vagrant/shared'."
+  echo "See README.md for details."
   echo -e "${NC}"
   exit 2
 fi
