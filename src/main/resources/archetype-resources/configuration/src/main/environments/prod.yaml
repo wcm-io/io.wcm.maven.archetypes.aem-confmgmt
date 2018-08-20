@@ -35,8 +35,7 @@ nodes:
       httpd:
         serverName: ${node}
         accessRestriction:
-          dispatcherFlushFromIp: 127.0.0.1 #if($optionAnsible=="y")${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Name == 'prod_author1' && @.ec2_tag_Project == '${configurationManagementName}')].ec2_private_ip_address}#end
-
+          dispatcherFlushFromIp: 127.0.0.1#if($optionAnsible=="y") ${stringUtils:join(inventory.authorHosts,' ')}#end
         ssl:
           certificateFile: /etc/ssl/certs/${node}.crt
           certificateKeyFile: /etc/ssl/private/${node}.key
@@ -97,6 +96,11 @@ config:
       enforce: true
   app:
     sampleContent: true
+#if( $optionAnsible=="y" )
+  inventory:
+    authorHosts: ${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Role == 'aem' && @.ec2_tag_conga_variants == 'aem-author' && @.ec2_tag_Project == '${configurationManagementName}')].ec2_private_ip_address}
+    publishHosts: ${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Role == 'aem' && @.ec2_tag_conga_variants == 'aem-publish' && @.ec2_tag_Project == '${configurationManagementName}')].ec2_private_ip_address}
+#end
 
 tenants:
 
@@ -108,6 +112,5 @@ tenants:
       - www.website1.com
       rootRedirect.url: /en.html
       accessRestriction:
-        dispatcherFlushFromIp: 127.0.0.1 #if($optionAnsible=="y")${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Name == 'prod_publish1' && @.ec2_tag_Project == '${configurationManagementName}')].ec2_private_ip_address} ${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Name == 'prod_publish2' && @.ec2_tag_Project == '${configurationManagementName}')].ec2_private_ip_address}#end
-
-    sling.mapping.rootPath: /content/${projectName}
+        dispatcherFlushFromIp: 127.0.0.1#if($optionAnsible=="y") ${stringUtils:join(inventory.publishHosts,' ')}#end
+    sling.mapping.rootPath: /content/aem-fe-archetype
