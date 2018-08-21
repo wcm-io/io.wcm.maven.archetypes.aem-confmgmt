@@ -79,6 +79,7 @@ if (optionTerraform == "n") {
 
   assert new File(rootDir, "ansible/inventory/ec2.ini").delete()
   assert new File(rootDir, "ansible/inventory/ec2.py").delete()
+  assert new File(rootDir, "ansible/group_vars/ec2").deleteDir()
 }
 
 // remove Vagrant files if not required
