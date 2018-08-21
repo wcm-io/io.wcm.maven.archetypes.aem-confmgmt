@@ -104,7 +104,7 @@
       <validationRegex>^(y|n)$</validationRegex>
     </requiredProperty>
     <!-- Include Terraform definition to setup infrastructure on AWS -->
-    <requiredProperty key="optionTerraformAws">
+    <requiredProperty key="optionTerraform">
       <defaultValue>y</defaultValue>
       <validationRegex>^(y|n)$</validationRegex>
     </requiredProperty>

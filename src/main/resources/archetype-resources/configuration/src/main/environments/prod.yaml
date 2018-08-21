@@ -98,9 +98,15 @@ config:
   app:
     sampleContent: true
 #if( $optionAnsible=="y" )
+#if( $optionTerraform=="y" )
   inventory:
     authorHosts: ${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Role == 'aem' && @.ec2_tag_conga_variants == 'aem-author' && @.ec2_tag_Project == '${configurationManagementName}')].ec2_private_ip_address}
     publishHosts: ${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Role == 'aem' && @.ec2_tag_conga_variants == 'aem-publish' && @.ec2_tag_Project == '${configurationManagementName}')].ec2_private_ip_address}
+#else
+  inventory:
+    authorHosts: ${symbol_dollar}{ansible-inventory-prod::tag_conga_variants_aem-author}
+    publishHosts: ${symbol_dollar}{ansible-inventory-prod::tag_conga_variants_aem-publish}
+#end
 #end
 
 tenants:

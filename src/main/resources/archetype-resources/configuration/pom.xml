@@ -39,7 +39,12 @@
         <configuration>
           <valueProvider>
             ansible-vault;file=${project.basedir}/../ansible/group_vars/all/vault_credentials.yml,
+#if ($optionTerraform == "y")
             ansible-inventory;file=${project.basedir}/../ansible/inventory/ec2.py
+#else
+            ansible-inventory-dev;_plugin_=ansible-inventory;file=${project.basedir}/../ansible/inventory/dev,
+            ansible-inventory-prod;_plugin_=ansible-inventory;file=${project.basedir}/../ansible/inventory/prod
+#end
           </valueProvider>
           <pluginConfig>
             aem-plugin;cryptoAesKeyUrl=ansible-vault:classpath:/crypto/master

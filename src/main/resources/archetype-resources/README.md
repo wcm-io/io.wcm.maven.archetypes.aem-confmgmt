@@ -65,7 +65,7 @@ ${symbol_pound}${symbol_pound}${symbol_pound} 2. Setup AWS infrastructure using 
 #else
 ${symbol_pound}${symbol_pound}${symbol_pound} 2. Apply IP addresses for AEM infrastructure
 
-* TODO: describe process
+* Configure the IP addresses of the target machines in the Ansible environment files
 #end
 
 
