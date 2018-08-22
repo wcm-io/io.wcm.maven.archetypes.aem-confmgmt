@@ -11,7 +11,7 @@ variants:
 config:
   contentPackage.group: ${projectName}
   crypto:
-#if ($optionVagrant=="y")
+#if ($optionAnsible=="y")
     # URLs of crypto keys to be deployed to AEM (as bundle files)
     aesCryptoKeyUrl: ansible-vault:classpath:/crypto/master
     hmacCryptoKeyUrl: ansible-vault:classpath:/crypto/hmac
