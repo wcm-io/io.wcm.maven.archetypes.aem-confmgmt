@@ -1,6 +1,6 @@
 resource "aws_security_group" "${configurationManagementName}" {
   name = "${configurationManagementName}"
-  description = "PVRND configuration management archetype security group"
+  description = "${configurationManagementName} security group"
 
   # --- AWS ALLOW ALL EGRESS ---
   
