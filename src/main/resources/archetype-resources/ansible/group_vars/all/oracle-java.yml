@@ -1,0 +1,8 @@
+# vars for srsp.oracle-java
+
+# version definition
+java_version: 8
+java_subversion: 181
+
+# mirror for jdk downloads
+java_mirror: http://download.oracle.com/otn-pub/java
