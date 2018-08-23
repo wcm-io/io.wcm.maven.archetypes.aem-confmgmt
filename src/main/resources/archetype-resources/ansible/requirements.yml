@@ -85,7 +85,7 @@
 - src: https://github.com/wcm-io-devops/ansible-conga-host-facts.git
   name: wcm_io_devops.conga_host_facts
   scm: git
-  version: 074727024ce7fb6da18b8bf313781accc43614d7
+  version: 6c92e58cd65a00de049f7043b45298e8f70c676c
 - src: https://github.com/wcm-io-devops/ansible-role-apache.git
   name: wcm_io_devops.apache
   scm: git

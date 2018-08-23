@@ -1,24 +1,34 @@
 [controlhost]
-localhost
+localhost ansible_connection=local
 
 [tag_conga_variants_aem-author]
-192.168.0.1
+192.168.0.2
 
 [tag_conga_variants_aem-publish]
-192.168.0.2
 192.168.0.3
+192.168.0.4
 
 [tag_conga_roles_aem-cms]
-192.168.0.1
 192.168.0.2
 192.168.0.3
+192.168.0.4
 
 [tag_conga_roles_aem-dispatcher]
-192.168.0.1
 192.168.0.2
 192.168.0.3
+192.168.0.4
 
 [tag_Project_${configurationManagementName}]
-192.168.0.1
 192.168.0.2
 192.168.0.3
+192.168.0.4
+
+[tag_Env_prod]
+192.168.0.2 conga_nodes='["author.website1.com"]' conga_variants='["aem-author"]'
+192.168.0.3 conga_nodes='["publish1.website1.com"]' conga_variants='["aem-publish"]'
+192.168.0.4 conga_nodes='["publish2.website1.com"]' conga_variants='["aem-publish"]'
+
+[not_ec2]
+192.168.0.2
+192.168.0.3
+192.168.0.4
