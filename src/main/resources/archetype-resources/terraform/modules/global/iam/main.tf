@@ -4,7 +4,7 @@
 # IAM Role
 resource "aws_iam_role" "${configurationManagementName}" {
   name = "${configurationManagementName}-role"
-  description = "PVRND configuration management archetype IAM Role"
+  description = "${configurationManagementName} IAM Role"
   assume_role_policy = "${symbol_dollar}{file("${symbol_dollar}{path.module}/assume-role-policy.json")}"
 }
 
