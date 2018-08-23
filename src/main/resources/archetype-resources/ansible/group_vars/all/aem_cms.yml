@@ -3,8 +3,8 @@
 aem_cms_version: 6.4.0
 aem_cms_version_short: 6.4
 
-# Download aem-cms quickstart from nexus
-aem_cms_install_source: nexus
+# Download aem-cms quickstart from maven_repository
+aem_cms_install_source: maven_repository
 aem_cms_maven_repository_coordinates:
 - {
     group_id: adobe.binary.aem.64.quickstart,

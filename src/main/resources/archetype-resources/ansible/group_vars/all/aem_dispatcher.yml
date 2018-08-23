@@ -1,7 +1,7 @@
 aem_dispatcher_version: 4.2.3
 
-# Install aem-dispatcher from nexus
-aem_dispatcher_install_source: nexus
+# Install aem-dispatcher from maven_repository
+aem_dispatcher_install_source: maven_repository
 aem_dispatcher_maven_repository_coordinates:
 - {
     group_id: adobe.binary.aem.dispatcher,
