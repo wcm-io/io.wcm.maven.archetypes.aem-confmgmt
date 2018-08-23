@@ -1,2 +1,5 @@
 # allow self signed certificates for dispatcher flush
 conga_aemdst_curl_allow_insecure: true
+
+# do not use a proxy when executing the smoke test
+conga_aemdst_curl_noproxy: true

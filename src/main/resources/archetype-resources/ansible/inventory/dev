@@ -1,5 +1,5 @@
 [controlhost]
-localhost
+localhost ansible_connection=local
 
 [tag_conga_variants_aem-author]
 192.168.0.1
@@ -14,4 +14,10 @@ localhost
 192.168.0.1
 
 [tag_Project_${configurationManagementName}]
+192.168.0.1
+
+[tag_Env_dev]
+192.168.0.1 conga_nodes='["author-dev.website1.com", "dev.website1.com"]' conga_variants='["aem-author","aem-publish"]' conga_variant_node_mapping='["aem-author=author-dev.website1.com","aem-publish=dev.website1.com"]'
+
+[not_ec2]
 192.168.0.1

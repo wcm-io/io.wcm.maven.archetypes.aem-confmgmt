@@ -1,8 +1,5 @@
-[local]
-localhost
-
 [controlhost]
-localhost
+localhost ansible_connection=local
 
 [tag_conga_variants_aem-author]
 localhost
@@ -20,4 +17,10 @@ localhost
 localhost
 
 [tag_Env_local]
+localhost
+
+[not_ec2]
+localhost
+
+[local]
 localhost
