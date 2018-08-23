@@ -57,7 +57,7 @@
 - src: https://github.com/wcm-io-devops/ansible-conga-aem-dispatcher-smoke-test.git
   name: wcm_io_devops.conga_aem_dispatcher_smoke_test
   scm: git
-  version: c7203cf824915f63aaf008379c4c27d366b48558
+  version: bf5bf9b3dc70114a7215f1466c77cc727fc86d37
 - src: https://github.com/wcm-io-devops/ansible-conga-aem-packages.git
   name: wcm_io_devops.conga_aem_packages
   scm: git
