@@ -121,4 +121,4 @@ tenants:
       accessRestriction:
         dispatcherFlushFromIp: 127.0.0.1#if($optionAnsible=="y") ${symbol_dollar}{stringUtils:join(inventory.publishHosts,' ')}#end
 
-    sling.mapping.rootPath: /content/aem-fe-archetype
+    sling.mapping.rootPath: /content/${projectName}
