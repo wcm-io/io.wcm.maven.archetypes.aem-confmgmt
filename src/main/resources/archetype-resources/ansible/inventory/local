@@ -21,3 +21,6 @@ localhost
 
 [not_ec2]
 localhost
+
+[local]
+localhost
