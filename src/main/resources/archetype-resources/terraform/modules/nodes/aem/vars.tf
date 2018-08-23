@@ -1,3 +1,10 @@
+#if ($awsMachineSize == "large")
+  #set( $prodInstanceType = "t2.2xlarge" )
+#elseif ($awsMachineSize == "medium")
+  #set( $prodInstanceType = "t2.xlarge" )
+#else
+  #set( $prodInstanceType = "t2.medium" )
+#end
 variable "key_name" {
   default = "${configurationManagementName}-key"
 }
@@ -7,7 +14,7 @@ variable "project" {
 }
 
 variable "instance_type" {
-  default = "t2.medium"
+  default = "${prodInstanceType}"
 }
 
 variable "volume_size" {

@@ -21,11 +21,11 @@
 - src: https://github.com/wcm-io-devops/ansible-aem-cms.git
   name: wcm_io_devops.aem_cms
   scm: git
-  version: 9e72762b4ee4ae2f57ce54e83ae4ed574f5d8ede
+  version: b17119ed89935fb6eb1758d54a0de612954d713b
 - src: https://github.com/wcm-io-devops/ansible-aem-dispatcher.git
   name: wcm_io_devops.aem_dispatcher
   scm: git
-  version: c7ec08a0c2d4b44a2d5418efa5b3cca721686d3b
+  version: 254ea94582f078827ca1f83185862bebe0f018cb
 - src: https://github.com/wcm-io-devops/ansible-aem-dispatcher-flush.git
   name: wcm_io_devops.aem_dispatcher_flush
   scm: git

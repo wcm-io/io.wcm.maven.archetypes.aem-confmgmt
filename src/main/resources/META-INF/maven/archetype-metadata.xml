@@ -86,6 +86,11 @@
     <requiredProperty key="awsRegion">
       <defaultValue>eu-west-1</defaultValue>
     </requiredProperty>
+    <!-- AWS machine size (translates to fitting AWS instace types) -->
+    <requiredProperty key="awsMachineSize">
+      <defaultValue>small</defaultValue>
+      <validationRegex>^(small|medium|large)$</validationRegex>
+    </requiredProperty>
 
     <!-- *** file references *** -->
     <!-- SSH Public key that is used for authentication on the AWS machines -->
