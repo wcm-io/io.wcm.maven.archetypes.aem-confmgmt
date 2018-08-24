@@ -64,7 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # galaxy settings
     ansible.galaxy_role_file = "requirements.yml"
     ansible.galaxy_roles_path = "/home/vagrant/.ansible/roles"
-    ansible.galaxy_command = "ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path} --force"
+    ansible.galaxy_command = "ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path}"
     # playbook settings
     ansible.inventory_path = "inventory/local"
     ansible.playbook = "playbook-setup-controlhost.yml"
