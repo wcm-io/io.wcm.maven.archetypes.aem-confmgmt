@@ -82,6 +82,8 @@
     <requiredProperty key="ansibleVaultPassword">
       <defaultValue>nopassword</defaultValue>
     </requiredProperty>
+    
+    <!-- *** AWS settings *** -->
     <!-- AWS region -->
     <requiredProperty key="awsRegion">
       <defaultValue>eu-west-1</defaultValue>
@@ -90,6 +92,22 @@
     <requiredProperty key="awsMachineSize">
       <defaultValue>small</defaultValue>
       <validationRegex>^(small|medium|large)$</validationRegex>
+    </requiredProperty>
+
+    <!-- *** Java SDK *** -->
+    <!-- Java Major Version -->
+    <requiredProperty key="javaMajorVersion">
+      <defaultValue>8</defaultValue>
+      <validationRegex>^\d+$</validationRegex>
+    </requiredProperty>
+    <!-- Java Minor Version -->
+    <requiredProperty key="javaMinorVersion">
+      <defaultValue>181</defaultValue>
+      <validationRegex>^\d+$</validationRegex>
+    </requiredProperty>
+    <!-- Java Minor Version -->
+    <requiredProperty key="javaDownloadBaseUrl">
+      <defaultValue>http://download.oracle.com/otn-pub/java</defaultValue>
     </requiredProperty>
 
     <!-- *** file references *** -->
