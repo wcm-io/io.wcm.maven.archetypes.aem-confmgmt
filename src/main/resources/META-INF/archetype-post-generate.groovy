@@ -2,6 +2,8 @@
 import groovy.io.FileType
 import java.util.regex.Pattern
 import java.util.regex.Matcher
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import io.wcm.devops.conga.plugins.aem.tooling.crypto.cli.CryptoKeys
 import io.wcm.devops.conga.plugins.aem.tooling.crypto.cli.AnsibleVault
 
@@ -10,6 +12,7 @@ def defaultFileReferenceDir = new File(request.getOutputDirectory()).getParent()
 
 
 // read parameters
+def configurationManagementName = request.getProperties().get("configurationManagementName");
 def ansibleVaultPassword = request.getProperties().get("ansibleVaultPassword");
 def sshPublicKeyFile = request.getProperties().get("sshPublicKeyFile");
 def aemLicensePropertiesFile = request.getProperties().get("aemLicensePropertiesFile");
@@ -103,3 +106,8 @@ rootDir.eachFileRecurse(FileType.FILES) { file ->
     }
   }
 }
+
+// rename root folder
+def newRootDir = new File(request.getOutputDirectory() + "/" + configurationManagementName)
+Files.move(rootDir.toPath(), newRootDir.toPath(), StandardCopyOption.REPLACE_EXISTING)
+assert newRootDir.exists()

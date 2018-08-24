@@ -1,1 +1,1 @@
-clean generate-resources -f configuration
+clean generate-resources -f ../delta/configuration
