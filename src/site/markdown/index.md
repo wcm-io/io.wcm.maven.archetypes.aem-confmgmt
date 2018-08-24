@@ -15,3 +15,8 @@ Maven Archetype for creating infrastructure deployment and configuration managem
 ### Overview
 
 ...
+
+
+
+[usage]: usage.html
+[changelog]: changes-report.html
