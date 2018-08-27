@@ -22,57 +22,35 @@ As minimal input parameters you have to enter a value for `configurationManageme
 
 $symbol_pound$symbol_pound$symbol_pound Archetype parameters
 
-$symbol_pound$symbol_pound$symbol_pound$symbol_pound Basic properties
-
-| Parameter                           | Default | Description
-|-------------------------------------|---------|-------------
-| **configurationManagementName**     |         | Name of the configuration management project that is used for tagging the infrastructure. The rules for AWS S3 bucket names should be followed - only lowercase characters, numbers and hyphens allowed.
-| **projectName**                     |         | Project name from AEM project
-| **groupId**                         |         | Maven artifact groupId from AEM project
-| **artifactId**                      | \*)     | Maven artifact "root" artifactId from AEM project, is suffixed for the individual modules
-| **version**                         | \*)     | Maven artifact version from the AEM project - e.g. 1.0.0-SNAPSHOT
-| **package**                         | \*)     | Java class package name - this is not used for this archetype, but a value has to be specified
-
-$symbol_pound$symbol_pound$symbol_pound$symbol_pound Credentials and security
-
 | Parameter                           | Default   | Description
 |-------------------------------------|-----------|-------------
+| **configurationManagementName**     |           | Name of the configuration management project that is used for tagging the infrastructure. The rules for AWS S3 bucket names should be followed - only lowercase characters, numbers and hyphens allowed.
+| **projectName**                     |           | Project name from AEM project
+| **groupId**                         |           | Maven artifact groupId from AEM project
+| **artifactId**                      | \*)       | Maven artifact "root" artifactId from AEM project, is suffixed for the individual modules
+| **version**                         | \*)       | Maven artifact version from the AEM project - e.g. 1.0.0-SNAPSHOT
+| **package**                         | \*)       | Java class package name - this is not used for this archetype, but a value has to be specified
+| _Credentials and security_
 | **mavenRepositoryUrl**              | \*)       | URL to maven repository to fetch all artifacts from, including Adobe binaries and the AEM project's artifact. This should not point to Maven Central.
 | **mavenRepositoryUser**             |           | Username for maven repository
 | **mavenRepositoryPassword**         |           | Password for maven repository
 | **aemAdminPassword**                | admin     | Password for AEM "admin" user and Felix console
 | **accessRestrictionIpAddress**      | 0.0.0.0/0 | List of IP addresses or IP subnets to restrict access to when accessing the AEM infrastructure. You can specify multiple separated by ",". Example: 10.0.0.1/10,192.168.0.1
 | **ansibleVaultPassword**            |           | Password for Ansible Vault encryption of all sensitive data in repository
-
-$symbol_pound$symbol_pound$symbol_pound$symbol_pound AWS settings
-
-| Parameter                           | Default   | Description
-|-------------------------------------|-----------|-------------
+| _AWS settings_
 | **awsRegion**                       | eu-west-1 | AWS region
 | **awsMachineSize**                  | small     | AWS machine size (translates to fitting AWS instance types) - small/medium/large
-
-$symbol_pound$symbol_pound$symbol_pound$symbol_pound Java SDK
-
-| Parameter                           | Default | Description
-|-------------------------------------|---------|-------------
-| **javaMajorVersion**                | 8       | Java major version 
-| **javaMinorVersion**                | 181     | Java minor version
-| **javaDownloadBaseUrl**             | \*)     | Download base URL for Java SDK binaries
-
-$symbol_pound$symbol_pound$symbol_pound$symbol_pound File references
-
-| Parameter                           | Default            | Description
-|-------------------------------------|--------------------|-------------
+| _Java SDK_
+| **javaMajorVersion**                | 8         | Java major version 
+| **javaMinorVersion**                | 181       | Java minor version
+| **javaDownloadBaseUrl**             | \*)       | Download base URL for Java SDK binaries
+| _File references_
 | **sshPublicKeyFile**                | id_rsa.pub         | Path to SSH Public key that is used for authentication on the AWS machines
 | **aemLicensePropertiesFile**        | license.properties | Path to AEM license.properties file
-
-$symbol_pound$symbol_pound$symbol_pound$symbol_pound Feature flags
-
-| Parameter                           | Default | Description
-|-------------------------------------|---------|-------------
-| **optionVagrant**                   | y       | Include vagrant file to set up an Ansible control host in a local VM
-| **optionTerraform**                 | y       | Include Terraform definition to setup infrastructure on AWS
-| **optionAnsible**                   | y       | Include Ansible playbooks to deploy AEM infrastructure
+| _Feature flags_
+| **optionVagrant**                   | y         | Include vagrant file to set up an Ansible control host in a local VM
+| **optionTerraform**                 | y         | Include Terraform definition to setup infrastructure on AWS
+| **optionAnsible**                   | y         | Include Ansible playbooks to deploy AEM infrastructure
 
 \*) Sensible default
 
