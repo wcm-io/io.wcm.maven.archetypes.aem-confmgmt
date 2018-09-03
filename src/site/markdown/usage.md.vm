@@ -1,10 +1,10 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-$symbol_pound$symbol_pound Maven Archetype for AEM Configuration Management usage
+${symbol_pound}${symbol_pound} Maven Archetype for AEM Configuration Management usage
 
 
-$symbol_pound$symbol_pound$symbol_pound Basic usage
+${symbol_pound}${symbol_pound}${symbol_pound} Basic usage
 
 _**Please note:** The Maven Archetype Plugin from Maven Central is missing the required feature [ARCHETYPE-536](https://issues.apache.org/jira/browse/ARCHETYPE-536) - until this feature is released use the unofficial version `3.0.2-180806-A536` as shown below. This is available in the "wcm.io Intermediate Release Repository" described in [wcm.io Maven Repositories][wcmio-maven]._
 
@@ -20,7 +20,7 @@ mvn org.apache.maven.plugins:maven-archetype-plugin:3.0.2-180806-A536:generate \
 As minimal input parameters you have to enter a value for `configurationManagementName`, `groupId` and `projectName` - all other parameters can be derived from these or have sensible default parameters. But in most cases you want to specify more parameters, see next chapters for all available parameters and some examples.
 
 
-$symbol_pound$symbol_pound$symbol_pound Archetype parameters
+${symbol_pound}${symbol_pound}${symbol_pound} Archetype parameters
 
 | Parameter                           | Default   | Description
 |-------------------------------------|-----------|-------------
@@ -55,38 +55,58 @@ $symbol_pound$symbol_pound$symbol_pound Archetype parameters
 \*) Sensible default
 
 
-$symbol_pound$symbol_pound$symbol_pound Usage examples
+${symbol_pound}${symbol_pound}${symbol_pound} Usage examples
 
-$symbol_pound$symbol_pound$symbol_pound$symbol_pound$symbol_pound Example 1 - TODO
+These examples use the [wcm.io Samples][wcmio-samples] project as sample AEM project for deployment (it's available on Maven Central).
 
-```
-mvn org.apache.maven.plugins:maven-archetype-plugin:3.0.2-180806-A536:generate -DinteractiveMode=false \
-  -DarchetypeGroupId=io.wcm.maven.archetypes \
-  -DarchetypeArtifactId=io.wcm.maven.archetypes.aem-confmgmt \
-  -DarchetypeVersion=${project.properties['releasedVersion.version']} \
-  -DprojectName=myproject1 \
-  -DgroupId=mycompany.myprojectgroup \
-  -DartifactId=mycompany.myprojectgroup.myproject1 \
-  -Dversion=1.0.0-SNAPSHOT \
-...
-```
-
-$symbol_pound$symbol_pound$symbol_pound$symbol_pound$symbol_pound Example 2 - TODO
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} Setup with Ansible, Terraform, Vagrant
 
 ```
 mvn org.apache.maven.plugins:maven-archetype-plugin:3.0.2-180806-A536:generate -DinteractiveMode=false \
   -DarchetypeGroupId=io.wcm.maven.archetypes \
   -DarchetypeArtifactId=io.wcm.maven.archetypes.aem-confmgmt \
   -DarchetypeVersion=${project.properties['releasedVersion.version']} \
-  -DprojectName=myproject2 \
-  -DgroupId=mycompany.myprojectgroup \
-  -DartifactId=mycompany.myprojectgroup.myproject2 \
-  -Dversion=1.0.0-SNAPSHOT \
-...
+  -DconfigurationManagementName=sample-project-1 \
+  -DprojectName=wcm-io-samples \
+  -DgroupId=io.wcm.samples \
+  -DartifactId=io.wcm.samples \
+  -Dversion=1.2.2 \
+  -DansibleVaultPassword=mypassword \
+  -DoptionAnsible=y \
+  -DoptionTerraform=y \
+  -DoptionVagrant=y
 ```
 
+You need to place additional files in the working directory where you execute this command:
 
-$symbol_pound$symbol_pound$symbol_pound Requirements
+* `license.properties` - Your AEM license.properties file
+* `id_rsa.pub` - SSH key that is used for accessing the AWS machines
+
+
+${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} Setup only with Ansible
+
+```
+mvn org.apache.maven.plugins:maven-archetype-plugin:3.0.2-180806-A536:generate -DinteractiveMode=false \
+  -DarchetypeGroupId=io.wcm.maven.archetypes \
+  -DarchetypeArtifactId=io.wcm.maven.archetypes.aem-confmgmt \
+  -DarchetypeVersion=${project.properties['releasedVersion.version']} \
+  -DconfigurationManagementName=sample-project-2 \
+  -DprojectName=wcm-io-samples \
+  -DgroupId=io.wcm.samples \
+  -DartifactId=io.wcm.samples \
+  -Dversion=1.2.2 \
+  -DansibleVaultPassword=mypassword \
+  -DoptionAnsible=y \
+  -DoptionTerraform=n \
+  -DoptionVagrant=n
+```
+
+You need to place additional files in the working directory where you execute this command:
+
+* `license.properties` - Your AEM license.properties file
+
+
+${symbol_pound}${symbol_pound}${symbol_pound} Requirements
 
 * JDK 1.8
 * Apache Maven 3.3.9 or higher
@@ -99,3 +119,4 @@ $symbol_pound$symbol_pound$symbol_pound Requirements
 [adobe-public-maven-repo]: https://repo.adobe.com/nexus/content/groups/public/
 [wcmio-maven]: http://wcm.io/maven.html
 [aem-binaries-conventions]: https://wcm-io.atlassian.net/wiki/x/AYC9Aw
+[wcmio-samples]: http://wcm.io/samples/
