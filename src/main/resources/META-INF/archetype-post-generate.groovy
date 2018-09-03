@@ -8,7 +8,7 @@ import io.wcm.devops.conga.plugins.aem.tooling.crypto.cli.CryptoKeys
 import io.wcm.devops.conga.plugins.aem.tooling.crypto.cli.AnsibleVault
 
 def rootDir = new File(request.getOutputDirectory() + "/" + request.getArtifactId())
-def defaultFileReferenceDir = new File(request.getOutputDirectory()).getParent()
+def defaultFileReferenceDir = new File(request.getOutputDirectory())
 
 
 // read parameters
