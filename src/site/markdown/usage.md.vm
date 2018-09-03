@@ -71,10 +71,14 @@ mvn org.apache.maven.plugins:maven-archetype-plugin:3.0.2-180806-A536:generate -
   -DgroupId=io.wcm.samples \
   -DartifactId=io.wcm.samples \
   -Dversion=1.2.2 \
-  -DansibleVaultPassword=mypassword \
   -DoptionAnsible=y \
   -DoptionTerraform=y \
-  -DoptionVagrant=y
+  -DoptionVagrant=y \
+  -DansibleVaultPassword=mypassword \
+  -DaemAdminPassword=admin \
+  -DmavenRepositoryUrl=http://your-maven-repository-url/ \
+  -DmavenRepositoryUser=user \
+  -DmavenRepositoryPassword=password
 ```
 
 You need to place additional files in the working directory where you execute this command:
@@ -95,10 +99,14 @@ mvn org.apache.maven.plugins:maven-archetype-plugin:3.0.2-180806-A536:generate -
   -DgroupId=io.wcm.samples \
   -DartifactId=io.wcm.samples \
   -Dversion=1.2.2 \
-  -DansibleVaultPassword=mypassword \
   -DoptionAnsible=y \
   -DoptionTerraform=n \
-  -DoptionVagrant=n
+  -DoptionVagrant=n \
+  -DansibleVaultPassword=mypassword \
+  -aemAdminPassword=admin \
+  -DmavenRepositoryUrl=http://your-maven-repository-url/ \
+  -DmavenRepositoryUser=user \
+  -DmavenRepositoryPassword=password
 ```
 
 You need to place additional files in the working directory where you execute this command:
