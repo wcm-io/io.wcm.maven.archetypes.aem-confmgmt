@@ -20,7 +20,12 @@
         aem_cms_home: "{{ conga_config.quickstart.rootPath }}"
 
   roles:
-    - { role: geerlingguy.swap, swap_file_size_mb: '1024' }
+    - {
+        role: geerlingguy.swap,
+        swap_file_size_mb: '1024',
+        tags: ['swap'],
+        when: ansible_swaptotal_mb == 0 # only create swap when no swap exists
+      }
     - {
         role: wcm_io_devops.aem_cms,
         tags: ['dev.aem_cms']
@@ -32,11 +37,11 @@
     # Configuration and application packages
     - {
         role: wcm_io_devops.conga_aem_packages,
-        conga_role_mapping: ${configurationManagementName}-aem-cms,
+        conga_role_mapping: ${projectName}-aem-cms,
         tags: ['dev.conga_aem_packages']
       }
     - {
         role: wcm_io_devops.conga_aem_packages,
-        conga_role_mapping: ${configurationManagementName}-aem-cms-combined,
+        conga_role_mapping: ${projectName}-aem-cms-combined,
         tags: ['dev.conga_aem_packages']
       }

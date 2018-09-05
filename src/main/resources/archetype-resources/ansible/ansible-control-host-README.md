@@ -7,7 +7,9 @@ Ansible Control Host
 Requirements:
 
 * Ansible 2.4.6+
+#if( $optionTerraform=="y" )
 * Terraform 0.11.7+
+#end
 
 Setup steps:
 
@@ -30,9 +32,11 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Install roles
 
     ansible-playbook playbook-install-roles.yml
 
+#if( $optionTerraform=="y" )
 ${symbol_pound}${symbol_pound} AWS Credentials
 
 Provide the AWS Credentials either by setting up environment variables
 as described
 [here](https://www.terraform.io/docs/providers/aws/index.html), or by
 setting up a credentials file as described [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html)
+#end

@@ -2,19 +2,22 @@
 import groovy.io.FileType
 import java.util.regex.Pattern
 import java.util.regex.Matcher
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 import io.wcm.devops.conga.plugins.aem.tooling.crypto.cli.CryptoKeys
 import io.wcm.devops.conga.plugins.aem.tooling.crypto.cli.AnsibleVault
 
 def rootDir = new File(request.getOutputDirectory() + "/" + request.getArtifactId())
-def defaultFileReferenceDir = new File(request.getOutputDirectory()).getParent()
+def defaultFileReferenceDir = new File(request.getOutputDirectory())
 
 
 // read parameters
+def configurationManagementName = request.getProperties().get("configurationManagementName");
 def ansibleVaultPassword = request.getProperties().get("ansibleVaultPassword");
 def sshPublicKeyFile = request.getProperties().get("sshPublicKeyFile");
 def aemLicensePropertiesFile = request.getProperties().get("aemLicensePropertiesFile");
 def optionVagrant = request.getProperties().get("optionVagrant")
-def optionTerraformAws = request.getProperties().get("optionTerraformAws")
+def optionTerraform = request.getProperties().get("optionTerraform")
 def optionAnsible = request.getProperties().get("optionAnsible")
 
 // validate parameters - throw exceptions for invalid combinations
@@ -52,7 +55,7 @@ if (optionAnsible == "y") {
 }
 
 
-if (optionTerraformAws == "y") {
+if (optionTerraform == "y") {
 
   // get SSH public key from keyfile and store it in terraform definition
   def sshPublicKeyFileObject = new File(defaultFileReferenceDir, sshPublicKeyFile);
@@ -67,17 +70,25 @@ if (optionTerraformAws == "y") {
     w << keyParFileContent
   }
 
+  assert new File(rootDir, "ansible/inventory/dev").delete()
+  assert new File(rootDir, "ansible/inventory/prod").delete()
+
 }
 
 
 // remove Terraform AWS files if not required
-if (optionTerraformAws == "n") {
+if (optionTerraform == "n") {
   assert new File(rootDir, "terraform").deleteDir()
+
+  assert new File(rootDir, "ansible/inventory/ec2.ini").delete()
+  assert new File(rootDir, "ansible/inventory/ec2.py").delete()
+  assert new File(rootDir, "ansible/group_vars/ec2").deleteDir()
 }
 
 // remove Vagrant files if not required
 if (optionVagrant == "n") {
   assert new File(rootDir, "vagrant").deleteDir()
+  assert new File(rootDir, "ansible/group_vars/local/vagrant.yml").delete()
 }
 
 // remove Ansible files if not required
@@ -95,3 +106,8 @@ rootDir.eachFileRecurse(FileType.FILES) { file ->
     }
   }
 }
+
+// rename root folder
+def newRootDir = new File(request.getOutputDirectory() + "/" + configurationManagementName)
+Files.move(rootDir.toPath(), newRootDir.toPath(), StandardCopyOption.REPLACE_EXISTING)
+assert newRootDir.exists()

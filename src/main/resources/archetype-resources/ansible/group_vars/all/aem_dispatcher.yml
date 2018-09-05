@@ -1,16 +1,16 @@
 aem_dispatcher_version: 4.2.3
 
-# Install aem-dispatcher from nexus
-aem_dispatcher_install_source: nexus
-aem_dispatcher_nexus_coordinates:
+# Install aem-dispatcher from maven_repository
+aem_dispatcher_install_source: maven_repository
+aem_dispatcher_maven_repository_coordinates:
 - {
     group_id: adobe.binary.aem.dispatcher,
     artifact_id: dispatcher,
     repository_url: "{{ maven_repository_url }}"
   }
 
-aem_dispatcher_nexus_password: "{{ vault_maven_repository_password }}"
-aem_dispatcher_nexus_username: "{{ vault_maven_repository_username }}"
+aem_dispatcher_maven_repository_password: "{{ vault_maven_repository_password }}"
+aem_dispatcher_maven_repository_username: "{{ vault_maven_repository_username }}"
 
 # remove default vhosts
 apache_remove_default_vhost: true

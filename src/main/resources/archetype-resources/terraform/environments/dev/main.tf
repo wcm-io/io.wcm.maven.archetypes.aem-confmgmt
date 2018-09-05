@@ -3,7 +3,9 @@ module "aem" {
   vpc_security_group_ids = ["${var.vpc_security_group_ids}"]
   instance_profile_name = "${var.instance_profile_name}"
   environment = "dev"
+#if ($awsMachineSize == "small")
   instance_type = "t2.large"
+#end
   conga_roles = ["aem-cms,aem-dispatcher"]
   conga_variants = ["aem-author","aem-publish"]
   conga_nodes = ["author-dev.website1.com","dev.website1.com"]

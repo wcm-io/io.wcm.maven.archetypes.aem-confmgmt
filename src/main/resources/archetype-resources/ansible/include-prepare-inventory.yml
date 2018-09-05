@@ -1,3 +1,4 @@
+#if( $optionTerraform=="y" )
 - name: "generate inventory (ec2)"
   hosts: "&ec2:&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}"
   gather_facts: no
@@ -16,6 +17,7 @@
             filters:
               instance-state-name: running
               "tag:Role": aem
+              "tag:Project": "${configurationManagementName}"
             region: "{{ aws_region }}"
           register: ec2_facts_aem
 
@@ -40,9 +42,9 @@
         block: "{{ conga_node_ip_mapping_private | join('\n') }}"
         marker: "# {mark} conga_node to ip mapping - ANSIBLE MANAGED BLOCK"
 
-- name: "generate inventory (vagrant)"
-  hosts: "&local:&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}"
-  gather_facts: no
+#end
+- name: "generate inventory (not ec2)"
+  hosts: "&not_ec2:&tag_Project_${configurationManagementName}:&tag_Env_{{ conga_environment }}"
   become: yes
   tags:
     - prepare-inventory
@@ -51,8 +53,23 @@
       set_fact:
         conga_node_ip_mapping_private: []
 
-    - name: update hosts file
+    - name: "Get ip adresses and defined 'conga_nodes' of all hosts in play."
+      set_fact:
+        conga_node_ip_mapping_private: "{{ conga_node_ip_mapping_private + [hostvars[item]['ansible_default_ipv4']['address']+' '+hostvars[item].conga_nodes | join(' ')] }}"
+      with_items: "{{ hostvars }}"
+      when:
+        - hostvars[item].conga_nodes is defined
+        - hostvars[item].ansible_default_ipv4 is defined
+        - item != inventory_hostname
+
+    - name: "Convert conga_node ip mapping list to a string."
+      set_fact:
+        conga_node_ip_mapping_private_str: "{{ conga_node_ip_mapping_private | join ('\n') }}"
+
+    - name: "Update hosts file."
       blockinfile:
         path: /etc/hosts
-        block: "127.0.0.1 {{ conga_nodes | join(' ') }}"
+        block: |
+          127.0.0.1 {{ conga_nodes | join(' ') }}
+          {{ conga_node_ip_mapping_private_str }}
         marker: "# {mark} conga_node to ip mapping - ANSIBLE MANAGED BLOCK"

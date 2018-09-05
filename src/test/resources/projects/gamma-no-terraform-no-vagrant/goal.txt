@@ -1,0 +1,1 @@
+clean generate-resources -f ../gamma/configuration -Dansible.vault.password=gamma-vault

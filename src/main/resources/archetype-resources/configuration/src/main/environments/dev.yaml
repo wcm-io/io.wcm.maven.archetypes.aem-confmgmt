@@ -78,7 +78,15 @@ config:
       adminAccessFromIp: #foreach( $ip in $accessRestrictionIpAddress.split(",") )$ip#if($foreach.hasNext) #end#end
 
 #end
-      dispatcherFlushFromIp: 127.0.0.1 #if($optionAnsible=="y")${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Name == 'dev_aem')].ec2_private_ip_address}#end
+#if( $optionAnsible=="y" )
+#if( $optionTerraform=="y" )
+      dispatcherFlushFromIp: 127.0.0.1 ${symbol_dollar}{ansible-inventory::${symbol_dollar}._meta.hostvars..[?(@.ec2_tag_Name == 'dev_aem' && @.ec2_tag_Project == '${configurationManagementName}')].ec2_private_ip_address}
+#else
+      dispatcherFlushFromIp: 127.0.0.1 ${symbol_dollar}{ansible-inventory-dev::tag_conga_roles_aem-cms}
+#end
+#else
+      dispatcherFlushFromIp: 127.0.0.1
+#end
 
     ssl:
       certificateFile: /etc/ssl/certs/${node}.crt

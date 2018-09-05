@@ -27,14 +27,14 @@
   <requiredProperties>
 
     <!-- *** basic properties *** -->
+    <!-- Name of the configuration management project that is used for tagging the infrastructure. -->
+    <!-- The rules for AWS S3 bucket names should be followed - only lowercase characters, numbers and hyphens allowed. -->
+    <requiredProperty key="configurationManagementName">
+      <validationRegex>^[a-z0-9\-]+$</validationRegex>
+    </requiredProperty>
     <!-- Project name from AEM project -->
     <requiredProperty key="projectName">
       <validationRegex>^[a-zA-Z0-9\-_]+$</validationRegex>
-    </requiredProperty>
-    <!-- Name of the configuration management project that is used for tagging the infrastructure -->
-    <!-- The rules for AWS S3 bucket names should be followed - only lowercase characters, numbers and hyphens allowed -->
-    <requiredProperty key="configurationManagementName">
-      <validationRegex>^[a-z0-9\-]+$</validationRegex>
     </requiredProperty>
     <!-- Maven artifact groupId from AEM project -->
     <requiredProperty key="groupId">
@@ -50,26 +50,22 @@
       <defaultValue>1.0.0-SNAPSHOT</defaultValue>
       <validationRegex>^\d+(\.\d+){0,2}(\-SNAPSHOT)?$</validationRegex>
     </requiredProperty>
-    <!-- Java class package name - this is not used for this archetype -->
+    <!-- Java class package name - this is not used for this archetype, but a value has to be specified -->
     <requiredProperty key="package">
       <defaultValue>unused</defaultValue>
       <validationRegex>^[a-z0-9\.]+$</validationRegex>
     </requiredProperty>
 
     <!-- *** credentials and security *** -->
-    <!-- URL to maven repository to fetch all artifacts from, including Adobe binaries and the AEM projects's artifact. This should not point to Maven Central. -->
+    <!-- URL to maven repository to fetch all artifacts from, including Adobe binaries and the AEM project's artifact. This should not point to Maven Central. -->
     <requiredProperty key="mavenRepositoryUrl">
       <defaultValue>http://repo1.maven.org/maven2/</defaultValue>
     </requiredProperty>
-    <!-- Username for maven repository -->
-    <requiredProperty key="mavenRepositoryUser">
-      <defaultValue>maven_user</defaultValue>
-    </requiredProperty>
-    <!-- Password for maven repository -->
-    <requiredProperty key="mavenRepositoryPassword">
-      <defaultValue>maven_password</defaultValue>
-    </requiredProperty>
-    <!-- Password for AEM "admin" user and felix console -->
+    <!-- Username for maven repository (optional) -->
+    <!--requiredProperty key="mavenRepositoryUser"/-->
+    <!-- Password for maven repository (optional) -->
+    <!--requiredProperty key="mavenRepositoryPassword"/-->
+    <!-- Password for AEM "admin" user and Felix console -->
     <requiredProperty key="aemAdminPassword">
       <defaultValue>admin</defaultValue>
     </requiredProperty>
@@ -79,20 +75,41 @@
       <validationRegex>^([0-9]{1,3}\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?(,([0-9]{1,3}\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?)*$</validationRegex>
     </requiredProperty>
     <!-- Password for Ansible Vault encryption of all sensitive data in repository -->
-    <requiredProperty key="ansibleVaultPassword">
-      <defaultValue>nopassword</defaultValue>
-    </requiredProperty>
+    <requiredProperty key="ansibleVaultPassword"/>
+    
+    <!-- *** AWS settings *** -->
     <!-- AWS region -->
     <requiredProperty key="awsRegion">
       <defaultValue>eu-west-1</defaultValue>
     </requiredProperty>
+    <!-- AWS machine size (translates to fitting AWS instance types) - small/medium/large -->
+    <requiredProperty key="awsMachineSize">
+      <defaultValue>small</defaultValue>
+      <validationRegex>^(small|medium|large)$</validationRegex>
+    </requiredProperty>
+
+    <!-- *** Java SDK *** -->
+    <!-- Java major version -->
+    <requiredProperty key="javaMajorVersion">
+      <defaultValue>8</defaultValue>
+      <validationRegex>^\d+$</validationRegex>
+    </requiredProperty>
+    <!-- Java minor version -->
+    <requiredProperty key="javaMinorVersion">
+      <defaultValue>181</defaultValue>
+      <validationRegex>^\d+$</validationRegex>
+    </requiredProperty>
+    <!-- Download base URL for Java SDK binaries -->
+    <requiredProperty key="javaDownloadBaseUrl">
+      <defaultValue>http://download.oracle.com/otn-pub/java</defaultValue>
+    </requiredProperty>
 
     <!-- *** file references *** -->
-    <!-- SSH Public key that is used for authentication on the AWS machines -->
+    <!-- Path to SSH Public key that is used for authentication on the AWS machines -->
     <requiredProperty key="sshPublicKeyFile">
       <defaultValue>id_rsa.pub</defaultValue>
     </requiredProperty>
-    <!-- AEM license.properties file -->
+    <!-- Path to AEM license.properties file -->
     <requiredProperty key="aemLicensePropertiesFile">
       <defaultValue>license.properties</defaultValue>
     </requiredProperty>
@@ -104,7 +121,7 @@
       <validationRegex>^(y|n)$</validationRegex>
     </requiredProperty>
     <!-- Include Terraform definition to setup infrastructure on AWS -->
-    <requiredProperty key="optionTerraformAws">
+    <requiredProperty key="optionTerraform">
       <defaultValue>y</defaultValue>
       <validationRegex>^(y|n)$</validationRegex>
     </requiredProperty>

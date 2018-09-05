@@ -1,2 +1,5 @@
 # allow self signed certificates for dispatcher flush
 aem_dispatcher_flush_insecure: true
+
+# do not use a proxy for dispatcher flush
+aem_dispatcher_flush_noproxy: true
