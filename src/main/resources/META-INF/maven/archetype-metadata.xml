@@ -88,7 +88,7 @@
     </requiredProperty>
     <!-- AWS machine size (translates to fitting AWS instance types) - small/medium/large -->
     <requiredProperty key="awsMachineSize">
-      <defaultValue>small</defaultValue>
+      <defaultValue>medium</defaultValue>
       <validationRegex>^(small|medium|large)$</validationRegex>
     </requiredProperty>
 
