@@ -84,6 +84,10 @@ if (optionTerraform == "n") {
   assert new File(rootDir, "ansible/inventory/ec2.py").delete()
   assert new File(rootDir, "ansible/group_vars/ec2").deleteDir()
 }
+else {
+  // set executable flag on ec2.py
+  assert new File(rootDir, "ansible/inventory/ec2.py").setExecutable(true, false)
+}
 
 // remove Vagrant files if not required
 if (optionVagrant == "n") {
