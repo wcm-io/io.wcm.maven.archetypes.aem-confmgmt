@@ -62,9 +62,13 @@
       <defaultValue>http://repo1.maven.org/maven2/</defaultValue>
     </requiredProperty>
     <!-- Username for maven repository (optional) -->
-    <!--requiredProperty key="mavenRepositoryUser"/-->
+    <requiredProperty key="mavenRepositoryUser">
+      <defaultValue>__not_set__</defaultValue>
+    </requiredProperty>
     <!-- Password for maven repository (optional) -->
-    <!--requiredProperty key="mavenRepositoryPassword"/-->
+    <requiredProperty key="mavenRepositoryPassword">
+      <defaultValue>__not_set__</defaultValue>
+    </requiredProperty>
     <!-- Password for AEM "admin" user and Felix console -->
     <requiredProperty key="aemAdminPassword">
       <defaultValue>admin</defaultValue>
