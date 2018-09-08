@@ -1,4 +1,4 @@
-module "stage-author" {
+module "prod-author" {
   centos7_ami_id = "${var.centos7_ami_id}"
   vpc_security_group_ids = ["${var.vpc_security_group_ids}"]
   instance_profile_name = "${var.instance_profile_name}"
