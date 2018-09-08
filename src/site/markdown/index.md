@@ -29,6 +29,12 @@ Features:
 See [Usage][usage] for a detailed documentation.
 
 
+### Further Resources
+
+* [Maven Archetypes for AEM][adaptto-talk-aem-archetypes] - Talk from adaptTo() 2018 about AEM project archetypes
+* [wcm.io Ansible Automation for AEM][aem-ansible]
+
+
 [usage]: usage.html
 [changelog]: changes-report.html
 [aem-archetype]: ../aem/
@@ -36,3 +42,4 @@ See [Usage][usage] for a detailed documentation.
 [aem-ansible]: http://devops.wcm.io/ansible.html
 [terraform]: https://www.terraform.io/
 [vagrant]: https://www.vagrantup.com/
+[adaptto-talk-aem-archetypes]: https://adapt.to/2018/en/schedule/maven-archetypes-for-aem.html
