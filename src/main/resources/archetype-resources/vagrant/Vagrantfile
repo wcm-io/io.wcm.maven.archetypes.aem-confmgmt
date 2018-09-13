@@ -33,13 +33,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 4502, host: 4502, id: 'aem-author'
   config.vm.network :forwarded_port, guest: 4503, host: 4503, id: 'aem-publish'
 
-  # set auto_update to false, if you do NOT want to check the correct
-  # additions version when booting this machine
-  config.vbguest.auto_update = false
-
-  # do NOT download the iso file from a webserver
-  config.vbguest.no_remote = true
-
   config.vm.provider "virtualbox" do |vb|
     # set cpu exectuion gab
     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "#{CPUEXECUTIONCAP}"]
