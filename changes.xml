@@ -24,6 +24,9 @@
   <body>
 
     <release version="1.0.4" date="not released">
+      <action type="add" dev="trichter">
+        Hosts file creation on controlhost for non ec2 environments.
+      </action>
       <action type="fix" dev="trichter">
         Remove usage of vagrant-vbguest plugin since it is not needed.
       </action>
