@@ -27,6 +27,9 @@
       <action type="fix" dev="trichter">
         Remove usage of vagrant-vbguest plugin since it is not needed.
       </action>
+      <action type="fix" dev="trichter">
+        Fix ownership on projects dir in vagrant vm.
+      </action>
     </release>
 
     <release version="1.0.2" date="2018-09-08">
