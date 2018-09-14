@@ -2,7 +2,7 @@
 set -e
 
 HOME_DIR="/home/vagrant"
-PROJECT_DIR="/home/vagrant/projects/${configurationManagementName}"
+PROJECTS_DIR="/home/vagrant/projects"
 ANSIBLE_DIR="$HOME/.ansible"
 ANSIBLE_VAULT_PASS_DEST="$ANSIBLE_DIR/.vault_pass"
 ANSIBLE_VAULT_PASS_SRC="/vagrant/shared/.vault_pass"
@@ -55,6 +55,9 @@ mkdir -p $AWS_CONFIG_DIR
 chmod 0700 $AWS_CONFIG_DIR
 cp "$AWS_CREDENTIALS_SRC" "$AWS_CREDENTIALS_DEST"
 chmod -R 0600 $AWS_CONFIG_DIR/*
+
+echo "Change ownership on projects dir"
+sudo chown -R vagrant:vagrant "$PROJECTS_DIR"
 
 # install git
 echo "Install GIT for Ansible Galaxy"

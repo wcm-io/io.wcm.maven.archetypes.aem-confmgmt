@@ -23,6 +23,18 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
+    <release version="1.0.4" date="2018-09-14">
+      <action type="add" dev="trichter">
+        Hosts file creation on controlhost for non ec2 environments.
+      </action>
+      <action type="fix" dev="trichter">
+        Remove usage of vagrant-vbguest plugin since it is not needed.
+      </action>
+      <action type="fix" dev="trichter">
+        Fix ownership on projects dir in vagrant vm.
+      </action>
+    </release>
+
     <release version="1.0.2" date="2018-09-08">
       <action type="fix" dev="sseifert">
         Set executable flag on ansible/inventory/ec2.py.

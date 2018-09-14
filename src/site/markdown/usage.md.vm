@@ -43,7 +43,7 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Archetype parameters
 | _Java SDK_                          |           | |
 | **javaMajorVersion**                | 8         | Java major version 
 | **javaMinorVersion**                | 181       | Java minor version
-| **javaDownloadBaseUrl**             | \*)       | Download base URL for Java SDK binaries
+| **javaDownloadBaseUrl**             | \*\*)     | Download base URL for Java SDK binaries
 | _File references_                   |           | |
 | **sshPublicKeyFile**                | id_rsa.pub         | Path to SSH Public key that is used for authentication on the AWS machines
 | **aemLicensePropertiesFile**        | license.properties | Path to AEM license.properties file
@@ -52,7 +52,8 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Archetype parameters
 | **optionTerraform**                 | y         | Include Terraform definition to setup infrastructure on AWS
 | **optionAnsible**                   | y         | Include Ansible playbooks to deploy AEM infrastructure
 
-\*) Sensible default
+\*) Sensible default<br/>
+\*\*) Default Java SDK download base URL: `http://download.oracle.com/otn-pub/java`
 
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Usage examples
@@ -119,9 +120,7 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Requirements
 * JDK 1.8
 * Apache Maven 3.3.9 or higher
 * Include the [Adobe Public Maven Repository][adobe-public-maven-repo] in your maven settings, see [wcm.io Maven Repositories][wcmio-maven] for details.
-* Optional: If you want to install latest service packs you have to upload them manually to your Maven Artifact Manager following [these conventions][aem-binaries-conventions] for naming them.
-
-
+* **Important**: You have to manually upload the AEM Quickstart JAR and AEM dispatcher binaries to your Maven Artifact Manager following [these conventions][aem-binaries-conventions] for naming them.
 
 
 [adobe-public-maven-repo]: https://repo.adobe.com/nexus/content/groups/public/

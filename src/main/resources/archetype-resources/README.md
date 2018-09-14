@@ -141,5 +141,5 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Teardown AWS Infrastructure using 
 [vagrant-folder]: vagrant
 #end
 [conga]: http://devops.wcm.io/conga/
-[wcmio-devops-ansible]: http://devops.wcm.io/ansible.html
+[wcmio-devops-ansible]: http://devops.wcm.io/ansible-aem/
 [aem-binaries-conventions]: https://wcm-io.atlassian.net/wiki/x/AYC9Aw
