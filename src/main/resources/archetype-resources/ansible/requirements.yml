@@ -3,7 +3,7 @@
 #
   # alternative to williamyeh.oracle-java
 - src: srsp.oracle-java
-  version: 2.19.1
+  version: 2.19.2
 - src: geerlingguy.swap
   version: 1.0.0
 - src: gantsign.maven
