@@ -1,19 +1,8 @@
 #
 # ansible galaxy requirements
 #
-  # alternative to williamyeh.oracle-java
-- src: srsp.oracle-java
-  version: 2.19.2
 - src: geerlingguy.swap
   version: 1.0.0
-- src: gantsign.maven
-  version: 4.0.0
-- src: geerlingguy.repo-epel
-  version: 1.2.3
-#if( $optionTerraform=="y" )
-- src: andrewrothstein.terraform
-  version: v2.2.10
-#end
 
 #
 # wcm-io-devops requirements
