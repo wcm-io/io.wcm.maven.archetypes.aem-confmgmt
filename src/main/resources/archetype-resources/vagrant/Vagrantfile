@@ -10,7 +10,7 @@ CPUEXECUTIONCAP = 80
 
 RSYNC_EXCLUDES = [".git/",".idea/","target/"]
 
-HOSTNAME = "${configurationManagementName}-controlhost"
+HOSTNAME = "${configurationManagementName.replace('.','_')}-controlhost"
 
 # ssh port
 SSH_PORT = 22022
