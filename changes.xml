@@ -30,6 +30,9 @@
       <action type="update" dev="trichter">
         Update io.wcm.maven.aem-global-parent to 1.2.28.
       </action>
+      <action type="fix" dev="trichter">
+        Fix vagrant hostname when configurationManagementName contains dots.
+      </action>
     </release>
 
     <release version="1.0.4" date="2018-09-14">
