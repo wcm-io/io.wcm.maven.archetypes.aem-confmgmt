@@ -28,7 +28,7 @@
 - name: wcm_io_devops.conga_aem_dispatcher_smoke_test
   version: 1.1.0
 - name: wcm_io_devops.conga_aem_packages
-  version: 1.1.0
+  version: 1.2.0
 - name: wcm_io_devops.conga_aem_smoke_test
   version: 1.0.1
 - name: wcm_io_devops.conga_ansible_controlhost
