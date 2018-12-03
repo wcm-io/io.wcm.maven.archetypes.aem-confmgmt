@@ -18,7 +18,7 @@
 - name: wcm_io_devops.aem_service
   version: 1.1.0
 - name: wcm_io_devops.conga_aem_cms
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.conga_bundle_files
   version: 1.1.0
 - name: wcm_io_devops.conga_aem_dispatcher
