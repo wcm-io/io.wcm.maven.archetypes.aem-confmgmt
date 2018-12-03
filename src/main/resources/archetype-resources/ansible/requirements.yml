@@ -42,4 +42,4 @@
 - name: wcm_io_devops.conga_host_facts
   version: 1.0.0
 - name: wcm_io_devops.apache
-  version: 3.0.0-1
+  version: 3.0.3-1
