@@ -1,49 +1,38 @@
 #
 # ansible galaxy requirements
 #
-  # alternative to williamyeh.oracle-java
-- src: srsp.oracle-java
-  version: 2.19.1
 - src: geerlingguy.swap
   version: 1.0.0
-- src: gantsign.maven
-  version: 4.0.0
-- src: geerlingguy.repo-epel
-  version: 1.2.3
-#if( $optionTerraform=="y" )
-- src: andrewrothstein.terraform
-  version: v2.2.10
-#end
 
 #
 # wcm-io-devops requirements
 #
 - name: wcm_io_devops.aem_cms
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.aem_dispatcher
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.aem_dispatcher_flush
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.aem_security
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.aem_service
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.conga_aem_cms
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.conga_bundle_files
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.conga_aem_dispatcher
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.conga_aem_dispatcher_flush
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.conga_aem_dispatcher_smoke_test
-  version: 1.0.0
+  version: 1.1.0
 - name: wcm_io_devops.conga_aem_packages
-  version: 1.0.0
-- name: wcm_io_devops.conga_aem_smoke_test
-  version: 1.0.0
-- name: wcm_io_devops.conga_ansible_controlhost
   version: 1.2.0
+- name: wcm_io_devops.conga_aem_smoke_test
+  version: 1.0.1
+- name: wcm_io_devops.conga_ansible_controlhost
+  version: 2.0.0
 - name: wcm_io_devops.conga_maven
   version: 1.0.0
 - name: wcm_io_devops.conga_facts
@@ -51,6 +40,6 @@
 - name: wcm_io_devops.conga_files
   version: 1.0.0
 - name: wcm_io_devops.conga_host_facts
-  version: 1.0.0
+  version: 1.0.1
 - name: wcm_io_devops.apache
-  version: 3.0.0-1
+  version: 3.0.3-1
