@@ -62,3 +62,6 @@ sudo chown -R vagrant:vagrant "$PROJECTS_DIR"
 # install git
 echo "Install GIT for Ansible Galaxy"
 sudo yum install git -y -q
+# update distribution to avoid package conflicts during XMP dependency installation
+echo "OS Update"
+sudo yum update -y
