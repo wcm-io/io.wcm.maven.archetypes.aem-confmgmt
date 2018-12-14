@@ -27,6 +27,9 @@
       <action type="update" dev="trichter">
         Update Ansible role dependencies.
       </action>
+      <action type="update" dev="trichter">
+        Update default JDK to 8u191.
+      </action>
     </release>
 
     <release version="1.0.6" date="2018-12-05">

@@ -100,7 +100,7 @@
     </requiredProperty>
     <!-- Java minor version -->
     <requiredProperty key="javaMinorVersion">
-      <defaultValue>181</defaultValue>
+      <defaultValue>191</defaultValue>
       <validationRegex>^\d+$</validationRegex>
     </requiredProperty>
     <!-- Download base URL for Java SDK binaries -->
