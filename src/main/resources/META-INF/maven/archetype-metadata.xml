@@ -93,19 +93,19 @@
     </requiredProperty>
 
     <!-- *** Java SDK *** -->
-    <!-- Java major version -->
+    <!-- Java major version. When set to 0 the latest version is used automatically. -->
     <requiredProperty key="javaMajorVersion">
-      <defaultValue>8</defaultValue>
+      <defaultValue>0</defaultValue>
       <validationRegex>^\d+$</validationRegex>
     </requiredProperty>
-    <!-- Java minor version -->
+    <!-- Java minor version. When set to 0 the latest version is used automatically. -->
     <requiredProperty key="javaMinorVersion">
-      <defaultValue>191</defaultValue>
+      <defaultValue>0</defaultValue>
       <validationRegex>^\d+$</validationRegex>
     </requiredProperty>
-    <!-- Download base URL for Java SDK binaries -->
+    <!-- Download base URL for Java SDK binaries. When set to 'auto' the default value is used. -->
     <requiredProperty key="javaDownloadBaseUrl">
-      <defaultValue>http://download.oracle.com/otn-pub/java</defaultValue>
+      <defaultValue>auto</defaultValue>
     </requiredProperty>
 
     <!-- *** file references *** -->
