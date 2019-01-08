@@ -1,8 +1,16 @@
 # vars for srsp.oracle-java
+#if( $javaMajorVersion!="0" )
 
-# version definition
+# java major version
 java_version: ${javaMajorVersion}
+#end
+#if( $javaMinorVersion!="0" )
+
+# java minor version
 java_subversion: ${javaMinorVersion}
+#end
+#if( $javaDownloadBaseUrl!="auto" )
 
 # mirror for jdk downloads
 java_mirror: ${javaDownloadBaseUrl}
+#end
