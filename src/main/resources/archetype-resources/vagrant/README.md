@@ -12,11 +12,17 @@ This [Vagrant][vagrant] environment sets up an Ansible Control Host that can be 
 ${symbol_pound}${symbol_pound} Requirements
 
 * Vagrant 2.1.2
+  * [vagrant-vbguest plugin](vagrant-vbguest)
 * Oracle VM VirtualBox 5.2
 * SSH Agent or Putty Pageant
 
 
 ${symbol_pound}${symbol_pound} Setup Vagrant environment
+
+${symbol_pound}${symbol_pound}${symbol_pound} Install required Vagrant
+plugins
+
+    vagrant plugin install vagrant-vbguest
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Provide vault password
 
@@ -71,3 +77,4 @@ If you want to constanly push changes to the VM run
 
 
 [vagrant]: https://www.vagrantup.com/
+[vagrant-vbguest]: https://github.com/dotless-de/vagrant-vbguest
