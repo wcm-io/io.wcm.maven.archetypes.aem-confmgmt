@@ -33,6 +33,9 @@
       <action type="fix" dev="trichter">
         Add vagrant-vbguest Vagrant plugin to fix missing guest additions after kernel upgrade and reboot.
       </action>
+      <action type="update" dev="sseifert">
+        Update dependencies.
+      </action>
     </release>
 
     <release version="1.0.6" date="2018-12-05">
