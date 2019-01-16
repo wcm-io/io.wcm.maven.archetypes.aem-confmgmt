@@ -8,7 +8,7 @@
 # wcm-io-devops requirements
 #
 - name: wcm_io_devops.aem_cms
-  version: 1.1.0
+  version: 1.1.1
 - name: wcm_io_devops.aem_dispatcher
   version: 1.1.0
 - name: wcm_io_devops.aem_dispatcher_flush
@@ -32,7 +32,7 @@
 - name: wcm_io_devops.conga_aem_smoke_test
   version: 1.0.1
 - name: wcm_io_devops.conga_ansible_controlhost
-  version: 2.0.2
+  version: 2.1.0
 - name: wcm_io_devops.conga_maven
   version: 1.0.0
 - name: wcm_io_devops.conga_facts
