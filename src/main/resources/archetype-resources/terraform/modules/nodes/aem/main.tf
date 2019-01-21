@@ -18,7 +18,7 @@ resource "aws_instance" "aem" {
     Project = "${var.project}"
     Role = "aem"
     conga_roles = "${symbol_dollar}{join(",",var.conga_roles)}"
-    # join the conga_nodes array with , and replace . by ___ otherwise the ec2 will convert it to one single dash
+    # join the conga_nodes array with ','
     conga_nodes = "${symbol_dollar}{join(",",var.conga_nodes)}"
     conga_variants = "${symbol_dollar}{join(",",var.conga_variants)}"
     conga_tenants = "${symbol_dollar}{join(",",var.conga_tenants)}"
