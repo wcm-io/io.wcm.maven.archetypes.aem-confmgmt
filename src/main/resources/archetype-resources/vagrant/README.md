@@ -36,7 +36,7 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Provide AWS credentials
     cp credentials.default credentials
     ${symbol_pound} place your AWS credentials in the credentials file
 
-${symbol_pound}${symbol_pound}${symbol_pound} Make sure the project ssh key is provided by your key agent
+${symbol_pound}${symbol_pound}${symbol_pound} Check if the project ssh key is provided by your key agent
 
     ssh-add -L
 
