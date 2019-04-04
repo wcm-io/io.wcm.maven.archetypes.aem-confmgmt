@@ -32,7 +32,7 @@
 - name: wcm_io_devops.conga_aem_smoke_test
   version: 1.0.1
 - name: wcm_io_devops.conga_ansible_controlhost
-  version: 2.0.3
+  version: 2.1.0
 - name: wcm_io_devops.conga_maven
   version: 1.0.0
 - name: wcm_io_devops.conga_facts

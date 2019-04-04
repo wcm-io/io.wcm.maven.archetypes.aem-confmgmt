@@ -23,7 +23,13 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="1.0.8" date="not released">
+    <release version="1.0.10" date="2019-03-15">
+      <action type="update" dev="sseifert">
+        Update dependencies.
+      </action>
+    </release>
+
+    <release version="1.0.8" date="2019-01-16">
       <action type="update" dev="trichter">
         Update Ansible role dependencies.
       </action>
@@ -33,8 +39,8 @@
       <action type="fix" dev="trichter">
         Add vagrant-vbguest Vagrant plugin to fix missing guest additions after kernel upgrade and reboot.
       </action>
-      <action type="fix" dev="trichter">
-        Delegate hosts file creation to localhost and use current user as owner.
+      <action type="update" dev="sseifert">
+        Update dependencies.
       </action>
     </release>
 
