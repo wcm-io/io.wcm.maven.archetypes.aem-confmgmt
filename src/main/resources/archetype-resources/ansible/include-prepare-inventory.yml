@@ -80,3 +80,5 @@
           127.0.0.1 {{ conga_nodes | join(' ') }}
           {{ conga_node_ip_mapping_private_str }}
         dest: "{{ playbook_dir }}/files/tmp/hosts_{{ conga_environment }}"
+      delegate_to: localhost
+      become: no
