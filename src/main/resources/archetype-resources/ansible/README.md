@@ -40,7 +40,7 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Setup LOCAL environment (e.g. in V
 
 [ansible-folder-ansible-control-host]: ansible-control-host-README.md
 #if( $optionVagrant=="y" )
-[vagrant-folder]: vagrant
+[vagrant-folder]: ../vagrant
 #end
 [ansible-playbooks]: https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
 [ansible-galaxy-wcm-io-devops]: https://galaxy.ansible.com/wcm_io_devops
