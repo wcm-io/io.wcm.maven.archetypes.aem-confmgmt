@@ -129,7 +129,7 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Teardown AWS Infrastructure using 
 #if( $optionAnsible=="y" )
 [ansible-folder]: ansible
 [ansible-folder-ansible-control-host]: ansible/ansible-control-host-README.md
-[ansible-folder-execute-playbooks]: ansible${symbol_pound}execute-playbooks
+[ansible-folder-execute-playbooks]: ansible/README.md${symbol_pound}execute-playbooks
 #end
 [configuration-folder]: configuration
 #if( $optionTerraform=="y" )

@@ -25,6 +25,9 @@
 
     <release version="1.0.12" date="not released">
       <action type="fix" dev="trichter">
+        Fix documentation links.
+      </action>
+      <action type="fix" dev="trichter">
         Delegate hosts file creation to localhost and use current user as owner.
       </action>
       <action type="update" dev="sseifert">
