@@ -27,6 +27,9 @@
       <action type="fix" dev="trichter">
         Delegate hosts file creation to localhost and use current user as owner.
       </action>
+      <action type="update" dev="sseifert">
+        Update dependencies.
+      </action>
     </release>
 
     <release version="1.0.10" date="2019-03-15">

@@ -1,4 +1,4 @@
-@Grab(group='io.wcm.devops.conga.plugins', module='conga-aem-crypto-cli', version='1.8.10')
+@Grab(group='io.wcm.devops.conga.plugins', module='conga-aem-crypto-cli', version='1.8.14')
 import groovy.io.FileType
 import java.util.regex.Pattern
 import java.util.regex.Matcher
