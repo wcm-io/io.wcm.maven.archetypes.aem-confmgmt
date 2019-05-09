@@ -25,13 +25,13 @@
   <parent>
     <groupId>io.wcm.maven</groupId>
     <artifactId>io.wcm.maven.parent</artifactId>
-    <version>1.0.12</version>
+    <version>1.0.14</version>
     <relativePath />
   </parent>
 
   <groupId>io.wcm.maven.archetypes</groupId>
   <artifactId>io.wcm.maven.archetypes.aem-confmgmt</artifactId>
-  <version>1.0.10</version>
+  <version>1.0.12</version>
   <packaging>maven-archetype</packaging>
 
   <name>wcm.io Maven Archetype for AEM Configuration Management</name>
@@ -40,7 +40,7 @@
 
   <properties>
     <site.url.module.prefix>tooling/maven/archetypes/aem-confmgmt</site.url.module.prefix>
-    <maven.archetype.version>3.0.2-180806-A536</maven.archetype.version>
+    <maven.archetype.version>3.1.0</maven.archetype.version>
     <!-- Control execution of archetype integration tests via -Pfast or -Dmaven.test.skip -->
     <archetype.test.skip>${integrationtests.skip}</archetype.test.skip>
   </properties>
