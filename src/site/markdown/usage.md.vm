@@ -6,12 +6,10 @@ ${symbol_pound}${symbol_pound} Maven Archetype for AEM Configuration Management 
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Basic usage
 
-_**Please note:** The Maven Archetype Plugin from Maven Central is missing the required feature [ARCHETYPE-536](https://issues.apache.org/jira/browse/ARCHETYPE-536) - until this feature is released use the unofficial version `3.0.2-180806-A536` as shown below. This is available in the "wcm.io Intermediate Release Repository" described in [wcm.io Maven Repositories][wcmio-maven]._
-
 Generate a new AEM project using interactive mode by executing:
 
 ```
-mvn org.apache.maven.plugins:maven-archetype-plugin:3.0.2-180806-A536:generate \
+mvn archetype:generate \
   -DarchetypeGroupId=io.wcm.maven.archetypes \
   -DarchetypeArtifactId=io.wcm.maven.archetypes.aem-confmgmt \
   -DarchetypeVersion=${project.properties['releasedVersion.version']}
@@ -63,7 +61,7 @@ These examples use the [wcm.io Samples][wcmio-samples] project as sample AEM pro
 ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} Setup with Ansible, Terraform, Vagrant
 
 ```
-mvn org.apache.maven.plugins:maven-archetype-plugin:3.0.2-180806-A536:generate -DinteractiveMode=false \
+mvn archetype:generate -DinteractiveMode=false \
   -DarchetypeGroupId=io.wcm.maven.archetypes \
   -DarchetypeArtifactId=io.wcm.maven.archetypes.aem-confmgmt \
   -DarchetypeVersion=${project.properties['releasedVersion.version']} \
@@ -91,7 +89,7 @@ You need to place additional files in the working directory where you execute th
 ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} Setup only with Ansible
 
 ```
-mvn org.apache.maven.plugins:maven-archetype-plugin:3.0.2-180806-A536:generate -DinteractiveMode=false \
+mvn archetype:generate -DinteractiveMode=false \
   -DarchetypeGroupId=io.wcm.maven.archetypes \
   -DarchetypeArtifactId=io.wcm.maven.archetypes.aem-confmgmt \
   -DarchetypeVersion=${project.properties['releasedVersion.version']} \
