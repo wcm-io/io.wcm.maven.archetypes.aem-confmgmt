@@ -134,8 +134,8 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Teardown AWS Infrastructure using 
 [configuration-folder]: configuration
 #if( $optionTerraform=="y" )
 [terraform-folder]: terraform
-[terraform-folder-setup]: terraform${symbol_pound}setup
-[terraform-folder-teardown]: terraform${symbol_pound}teardown
+[terraform-folder-setup]: terraform/README.md${symbol_pound}setup
+[terraform-folder-teardown]: terraform/README.md${symbol_pound}teardown
 #end
 #if( $optionVagrant=="y" )
 [vagrant-folder]: vagrant

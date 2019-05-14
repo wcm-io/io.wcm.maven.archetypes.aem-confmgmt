@@ -23,10 +23,13 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="1.0.12" date="2019-05-09">
+    <release version="1.0.14" date="not released">
       <action type="fix" dev="trichter">
         Fix documentation links.
       </action>
+    </release>
+    
+    <release version="1.0.12" date="2019-05-09">
       <action type="fix" dev="trichter">
         Delegate hosts file creation to localhost and use current user as owner.
       </action>
