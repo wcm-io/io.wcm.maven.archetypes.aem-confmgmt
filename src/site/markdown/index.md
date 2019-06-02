@@ -38,8 +38,8 @@ See [Usage][usage] for a detailed documentation.
 [usage]: usage.html
 [changelog]: changes-report.html
 [aem-archetype]: ../aem/
-[conga]: http://devops.wcm.io/conga/
-[aem-ansible]: http://devops.wcm.io/ansible-aem/
+[conga]: https://devops.wcm.io/conga/
+[aem-ansible]: https://devops.wcm.io/ansible-aem/
 [terraform]: https://www.terraform.io/
 [vagrant]: https://www.vagrantup.com/
 [adaptto-talk-2018-aem-archetypes]: https://adapt.to/2018/en/schedule/maven-archetypes-for-aem.html

@@ -7,4 +7,4 @@ CONGA Configuration
 This folder contains the [CONGA][conga] environment definitions.
 
 
-[conga]: http://devops.wcm.io/conga/
+[conga]: https://devops.wcm.io/conga/

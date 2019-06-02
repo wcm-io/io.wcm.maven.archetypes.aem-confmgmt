@@ -122,6 +122,6 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Requirements
 
 
 [adobe-public-maven-repo]: https://repo.adobe.com/nexus/content/groups/public/
-[wcmio-maven]: http://wcm.io/maven.html
+[wcmio-maven]: https://wcm.io/maven.html
 [aem-binaries-conventions]: https://wcm-io.atlassian.net/wiki/x/AYC9Aw
-[wcmio-samples]: http://wcm.io/samples/
+[wcmio-samples]: https://wcm.io/samples/

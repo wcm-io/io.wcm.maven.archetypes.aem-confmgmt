@@ -59,7 +59,7 @@
     <!-- *** credentials and security *** -->
     <!-- URL to maven repository to fetch all artifacts from, including Adobe binaries and the AEM project's artifact. This should not point to Maven Central. -->
     <requiredProperty key="mavenRepositoryUrl">
-      <defaultValue>http://repo1.maven.org/maven2/</defaultValue>
+      <defaultValue>https://repo1.maven.org/maven2/</defaultValue>
     </requiredProperty>
     <!-- Username for maven repository (optional) -->
     <requiredProperty key="mavenRepositoryUser">

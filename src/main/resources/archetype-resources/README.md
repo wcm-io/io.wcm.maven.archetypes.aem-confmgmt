@@ -140,6 +140,6 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Teardown AWS Infrastructure using 
 #if( $optionVagrant=="y" )
 [vagrant-folder]: vagrant
 #end
-[conga]: http://devops.wcm.io/conga/
-[wcmio-devops-ansible]: http://devops.wcm.io/ansible-aem/
+[conga]: https://devops.wcm.io/conga/
+[wcmio-devops-ansible]: https://devops.wcm.io/ansible-aem/
 [aem-binaries-conventions]: https://wcm-io.atlassian.net/wiki/x/AYC9Aw
