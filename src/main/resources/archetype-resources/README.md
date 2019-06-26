@@ -129,17 +129,17 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Teardown AWS Infrastructure using 
 #if( $optionAnsible=="y" )
 [ansible-folder]: ansible
 [ansible-folder-ansible-control-host]: ansible/ansible-control-host-README.md
-[ansible-folder-execute-playbooks]: ansible${symbol_pound}execute-playbooks
+[ansible-folder-execute-playbooks]: ansible/README.md${symbol_pound}execute-playbooks
 #end
 [configuration-folder]: configuration
 #if( $optionTerraform=="y" )
 [terraform-folder]: terraform
-[terraform-folder-setup]: terraform${symbol_pound}setup
-[terraform-folder-teardown]: terraform${symbol_pound}teardown
+[terraform-folder-setup]: terraform/README.md${symbol_pound}setup
+[terraform-folder-teardown]: terraform/README.md${symbol_pound}teardown
 #end
 #if( $optionVagrant=="y" )
 [vagrant-folder]: vagrant
 #end
-[conga]: http://devops.wcm.io/conga/
-[wcmio-devops-ansible]: http://devops.wcm.io/ansible-aem/
+[conga]: https://devops.wcm.io/conga/
+[wcmio-devops-ansible]: https://devops.wcm.io/ansible-aem/
 [aem-binaries-conventions]: https://wcm-io.atlassian.net/wiki/x/AYC9Aw
