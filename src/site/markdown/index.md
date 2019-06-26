@@ -18,7 +18,7 @@ With this archetype you can create a "Configuration Management" project for your
 
 Features:
 
-* Supports AEM 6.3 and AEM 6.4
+* Supports AEM 6.3 and higher
 * Supports all [CONGA][conga]-enabled AEM projects that publish a `config-definition` artifact describing the AEM application and configuration parameters
 * Uses the [Ansible Automation for AEM][aem-ansible]
 * Optional: Define and generate AWS machines and infrastructure using [Terraform][terraform]
