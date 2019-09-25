@@ -64,8 +64,12 @@ echo "Install GIT for Ansible Galaxy"
 sudo yum install git -y -q
 
 # install pip
-sudo yum install epel-release -y
-sudo yum install python-pip -y
+if ! [ -x "$(command -v pip)" ]; then
+  echo 'pip is not installed, installing' >&2
+  sudo curl -s https://bootstrap.pypa.io/get-pip.py | sudo python 2>&1
+else
+  echo 'pip is already installed'
+fi
 
 # update distribution to avoid package conflicts during XMP dependency installation
 echo "OS Update"
