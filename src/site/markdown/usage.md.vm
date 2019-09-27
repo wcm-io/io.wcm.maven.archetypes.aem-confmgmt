@@ -43,7 +43,7 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Archetype parameters
 | **javaMinorVersion**                | 181       | Java minor version
 | **javaDownloadBaseUrl**             | \*\*)     | Download base URL for Java SDK binaries
 | _File references_                   |           | |
-| **sshPublicKeyFile**                | id_rsa.pub         | Path to SSH Public key that is used for authentication on the AWS machines
+| **sshPublicKeyFile**                | id_rsa.pub         | Path to SSH Public key that is used for authentication on the AWS machines (only required when optionTerraform='y')
 | **aemLicensePropertiesFile**        | license.properties | Path to AEM license.properties file
 | _Feature flags_                     |           | |
 | **optionVagrant**                   | y         | Include vagrant file to set up an Ansible control host in a local VM
