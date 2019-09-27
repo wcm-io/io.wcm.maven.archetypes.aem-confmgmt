@@ -118,6 +118,13 @@
       <defaultValue>license.properties</defaultValue>
     </requiredProperty>
 
+    <!-- *** AEM version *** -->
+    <!-- AEM major version (6.3, 6.4 or 6.5) -->
+    <requiredProperty key="optionAemVersion">
+      <defaultValue>6.5</defaultValue>
+      <validationRegex>^(6\.3|6\.4|6\.5)$</validationRegex>
+    </requiredProperty>
+
     <!-- *** feature flags *** -->
     <!-- Include vagrant file to set up an Ansible control host in a local VM -->
     <requiredProperty key="optionVagrant">

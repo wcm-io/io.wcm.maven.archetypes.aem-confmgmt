@@ -1,13 +1,16 @@
+#set( $aemVersionFull = "${optionAemVersion}.0" )
+#set( $aemVersionShort = $optionAemVersion )
+#set( $aemVersionWihtoutDots = $optionAemVersion.replace(".","") )
 # configure wcm_io_devops.aem_cms
 # aem-cms
-aem_cms_version: 6.4.0
-aem_cms_version_short: 6.4
+aem_cms_version: ${aemVersionFull}
+aem_cms_version_short: ${aemVersionShort}
 
 # Download aem-cms quickstart from maven_repository
 aem_cms_install_source: maven_repository
 aem_cms_maven_repository_coordinates:
 - {
-    group_id: adobe.binary.aem.64.quickstart,
+    group_id: adobe.binary.aem.${aemVersionWihtoutDots}.quickstart,
     artifact_id: aem-quickstart,
     repository_url: "{{ maven_repository_url }}"
   }
