@@ -30,8 +30,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 22, host: SSH_PORT, id: 'ssh'
   config.vm.network :forwarded_port, guest: 8443, host: 8443, id: 'https'
   config.vm.network :forwarded_port, guest: 8080, host: 8080, id: 'http'
-  config.vm.network :forwarded_port, guest: 4502, host: 4502, id: 'aem-author'
-  config.vm.network :forwarded_port, guest: 4503, host: 4503, id: 'aem-publish'
+  config.vm.network :forwarded_port, guest: 4502, host: 8502, id: 'aem-author'
+  config.vm.network :forwarded_port, guest: 4503, host: 8503, id: 'aem-publish'
 
   # force auto update of VirtualBox guest additions
   config.vbguest.auto_update = true
