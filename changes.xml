@@ -24,6 +24,12 @@
   <body>
 
     <release version="1.1.0" date="not released">
+      <action type="add" dev="nbellack">
+        Interactively ask for Ansible Vault password on Vagrant provision.
+      </action>
+      <action type="add" dev="nbellack">
+        Render Ansible Vault credentials to correct place on archetype generation.
+      </action>
       <action type="add" dev="sseifert">
         Make AEM major version configurable. Defaults to AEM 6.5.
       </action>

@@ -89,6 +89,10 @@ else {
   assert new File(rootDir, "ansible/inventory/ec2.py").setExecutable(true, false)
 }
 
+// create .vault_pass file for convenience, so the user who generates the archetype does not have to enter it twice
+File vaultPassFile = new File(rootDir, "vagrant/shared/.vault_pass")
+vaultPassFile.write(ansibleVaultPassword)
+
 // remove Vagrant files if not required
 if (optionVagrant == "n") {
   assert new File(rootDir, "vagrant").deleteDir()
