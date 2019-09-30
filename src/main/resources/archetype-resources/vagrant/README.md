@@ -29,6 +29,8 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Provide vault password
     cd vagrant/shared
     cp .vault_pass.default .vault_pass
     ${symbol_pound} place the Ansible Vault password in .vault_pass
+    
+If you do not provide a password file, Vagrant will ask you to enter it interactively and will then place it at the correct path.
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Provide AWS credentials
 
