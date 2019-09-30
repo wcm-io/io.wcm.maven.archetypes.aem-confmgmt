@@ -34,7 +34,6 @@
       <plugin>
         <groupId>io.wcm.devops.conga</groupId>
         <artifactId>conga-maven-plugin</artifactId>
-        <extensions>true</extensions>
 #if ($optionAnsible == "y")
         <configuration>
           <valueProvider>
