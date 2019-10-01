@@ -58,9 +58,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         system 'stty -echo'
         print @msg
         pass = URI.escape(STDIN.gets.chomp)
-        ensure
+      ensure
         system 'stty echo'
-        end
+      end
         print "\n"
       pass
     end
