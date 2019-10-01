@@ -33,6 +33,9 @@
       <action type="add" dev="sseifert">
         Make AEM major version configurable. Defaults to AEM 6.5.
       </action>
+      <action type="update" dev="sseifert">
+        Change default AEM ports for author and publish instance for vagrant box to 8502, 8503.
+      </action>
       <action type="fix" dev="nbellack">
         Install PIP if not available.
       </action>
