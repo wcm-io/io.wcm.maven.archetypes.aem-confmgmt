@@ -1,4 +1,5 @@
 controlhost_vault_pass_path: "{{ controlhost_user_home }}/.ansible/.vault_pass"
+controlhost_maven_master_password: "{{ vault_controlhost_maven_master_password }}"
 
 controlhost_maven_repositories:
   - id: central

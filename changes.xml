@@ -30,6 +30,9 @@
       <action type="update" dev="sseifert">
         Change default AEM ports for author and publish instance for vagrant box to 8502, 8503.
       </action>
+      <action type="update" dev="sseifert">
+        Generate (random) Maven master password to encrypt maven settings in vagrant control host.
+      </action>
       <action type="fix" dev="nbellack">
         Install PIP if not available.
       </action>
