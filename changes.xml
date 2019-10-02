@@ -23,18 +23,24 @@
     xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
   <body>
 
-    <release version="1.1.0" date="not released">
+    <release version="1.2.0" date="not released">
       <action type="add" dev="nbellack">
         Interactively ask for Ansible Vault password on Vagrant provision.
       </action>
       <action type="add" dev="nbellack">
         Ansible Vault password file will not be synced to host anymore.
       </action>
+    </release>
+
+    <release version="1.1.0" date="2019-10-02">
       <action type="add" dev="sseifert">
         Make AEM major version configurable. Defaults to AEM 6.5.
       </action>
       <action type="update" dev="sseifert">
         Change default AEM ports for author and publish instance for vagrant box to 8502, 8503.
+      </action>
+      <action type="update" dev="sseifert">
+        Generate (random) Maven master password to encrypt maven settings in vagrant control host.
       </action>
       <action type="fix" dev="nbellack">
         Install PIP if not available.
