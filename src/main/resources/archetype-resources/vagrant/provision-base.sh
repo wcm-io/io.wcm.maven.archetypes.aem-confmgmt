@@ -3,6 +3,8 @@ set -e
 
 HOME_DIR="/home/vagrant"
 PROJECTS_DIR="/home/vagrant/projects"
+ANSIBLE_VAULT_PASS_SRC="/vagrant/shared/.vault_pass"
+ANSIBLE_VAULT_PASS_DEST="/home/vagrant/.ansible/.vault_pass"
 #if( $optionTerraform=="y" )
 AWS_CONFIG_DIR="$HOME/.aws"
 AWS_CREDENTIALS_SRC="/vagrant/shared/credentials"
@@ -11,6 +13,32 @@ AWS_CREDENTIALS_DEST="$AWS_CONFIG_DIR/credentials"
 
 EC='\033[0;31m'
 NC='\033[0m' # No Color
+
+if [ ! -f "$ANSIBLE_VAULT_PASS_SRC" -a ! -f "$ANSIBLE_VAULT_PASS_DEST" ]; then
+  echo ' ______ _____  _____   ____  _____'
+  echo '|  ____|  __ \|  __ \ / __ \|  __ \'
+  echo '| |__  | |__) | |__) | |  | | |__) |'
+  echo '|  __| |  _  /|  _  /| |  | |  _  / '
+  echo '| |____| | \ \| | \ \| |__| | | \ \ '
+  echo '|______|_|  \_\_|  \_\\____/|_|  \_\'
+  echo -e "${EC}"
+  echo "Ansible .vault_pass file not found!"
+  echo "Make sure to place/configure the file '.vault_pass' at 'vagrant/shared' or to enter the password on provisioning."
+  echo "See README.md for details."
+  echo -e "${NC}"
+  exit 1
+fi
+
+if [ ! -f "$ANSIBLE_VAULT_PASS_DEST" ]; then
+  echo "Provision .vault_pass for Ansible Vault"
+  cp "$ANSIBLE_VAULT_PASS_SRC" "$ANSIBLE_VAULT_PASS_DEST"
+  chmod 0600 $ANSIBLE_VAULT_PASS_DEST
+fi
+
+if [ -f "$ANSIBLE_VAULT_PASS_SRC" ]; then
+  echo "Deleting Ansible Vault password file from host"
+  rm "$ANSIBLE_VAULT_PASS_SRC"
+fi
 
 #if( $optionTerraform=="y" )
 if [ ! -f "$AWS_CREDENTIALS_SRC" ]; then

@@ -26,7 +26,12 @@ plugins
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Provide vault password
     
-During provision, Vagrant will ask you to enter the Ansible Vault password interactively and will then place it at the correct path in the control host VM (which is `'/home/vagrant/.ansible/.vault_pass'`)
+    cd vagrant/shared
+    cp .vault_pass.default .vault_pass
+    ${symbol_pound} place the Ansible Vault password in .vault_pass
+    
+If you do not provide the `.vault_pass` file, Vagrant will ask you to enter the password interactively and will then place it at the correct path in the control host VM (which is `/home/vagrant/.ansible/.vault_pass`).
+If you provide the file via `vagrant/shared/.vault_pass`, the file will be deleted from your host afterwards.
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Provide AWS credentials
 
