@@ -28,7 +28,7 @@
         Interactively ask for Ansible Vault password on Vagrant provision.
       </action>
       <action type="add" dev="nbellack">
-        Render Ansible Vault credentials to correct place on archetype generation.
+        Ansible Vault password file will not be synced to host anymore.
       </action>
       <action type="add" dev="sseifert">
         Make AEM major version configurable. Defaults to AEM 6.5.

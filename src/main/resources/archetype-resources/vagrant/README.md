@@ -25,12 +25,8 @@ plugins
     vagrant plugin install vagrant-vbguest
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Provide vault password
-
-    cd vagrant/shared
-    cp .vault_pass.default .vault_pass
-    ${symbol_pound} place the Ansible Vault password in .vault_pass
     
-If you do not provide a password file, Vagrant will ask you to enter it interactively and will then place it at the correct path.
+During provision, Vagrant will ask you to enter the Ansible Vault password interactively and will then place it at the correct path in the control host VM (which is `'/home/vagrant/.ansible/.vault_pass'`)
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Provide AWS credentials
 

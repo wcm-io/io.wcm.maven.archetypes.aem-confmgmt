@@ -11,7 +11,7 @@ CPUEXECUTIONCAP = 80
 RSYNC_EXCLUDES = [".git/",".idea/","target/"]
 
 HOSTNAME = "${configurationManagementName.replace('.','-')}-controlhost"
-ANSIBLE_VAULT_PASSWORD_FILE="shared/.vault_pass"
+ANSIBLE_VAULT_PASSWORD_FILE = "/home/vagrant/.ansible/.vault_pass"
 
 # ssh port
 SSH_PORT = 22022
@@ -68,14 +68,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # read ansible vault password file when not already configured
   if !File.exist?(ANSIBLE_VAULT_PASSWORD_FILE)
-    config.vm.provision "shell",
+    config.vm.provision "shell", privileged: false,
     env: {
-      "FILE_PATH" => "/vagrant/#{ANSIBLE_VAULT_PASSWORD_FILE}",
+      "FILE_PATH" => ANSIBLE_VAULT_PASSWORD_FILE,
       "ANSIBLE_VAULT_PASSWORD" => CredentialPrompt.new("Enter the Ansible Vault Password: ")
       },
     inline: <<-SHELL
       touch $FILE_PATH
-      echo "$ANSIBLE_VAULT_PASSWORD" >> $FILE_PATH
+      echo "$ANSIBLE_VAULT_PASSWORD" > $FILE_PATH
     SHELL
   end
 
