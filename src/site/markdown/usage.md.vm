@@ -43,8 +43,10 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Archetype parameters
 | **javaMinorVersion**                | 181       | Java minor version
 | **javaDownloadBaseUrl**             | \*\*)     | Download base URL for Java SDK binaries
 | _File references_                   |           | |
-| **sshPublicKeyFile**                | id_rsa.pub         | Path to SSH Public key that is used for authentication on the AWS machines
+| **sshPublicKeyFile**                | id_rsa.pub         | Path to SSH Public key that is used for authentication on the AWS machines (only required when optionTerraform='y')
 | **aemLicensePropertiesFile**        | license.properties | Path to AEM license.properties file
+| _AEM version_                       |           | |
+| **optionAemVersion**                | 6.5       | AEM major version (6.3, 6.4 or 6.5)
 | _Feature flags_                     |           | |
 | **optionVagrant**                   | y         | Include vagrant file to set up an Ansible control host in a local VM
 | **optionTerraform**                 | y         | Include Terraform definition to setup infrastructure on AWS
@@ -69,7 +71,8 @@ mvn archetype:generate -DinteractiveMode=false \
   -DprojectName=wcm-io-samples \
   -DgroupId=io.wcm.samples \
   -DartifactId=io.wcm.samples \
-  -Dversion=1.2.2 \
+  -Dversion=1.3.0 \
+  -DoptionAemVersion=6.5 \
   -DoptionAnsible=y \
   -DoptionTerraform=y \
   -DoptionVagrant=y \
@@ -97,7 +100,8 @@ mvn archetype:generate -DinteractiveMode=false \
   -DprojectName=wcm-io-samples \
   -DgroupId=io.wcm.samples \
   -DartifactId=io.wcm.samples \
-  -Dversion=1.2.2 \
+  -Dversion=1.3.0 \
+  -DoptionAemVersion=6.5 \
   -DoptionAnsible=y \
   -DoptionTerraform=n \
   -DoptionVagrant=n \
