@@ -3,13 +3,16 @@ set -e
 
 HOME_DIR="/home/vagrant"
 PROJECTS_DIR="/home/vagrant/projects"
+#if( $optionTerraform=="y" )
 AWS_CONFIG_DIR="$HOME/.aws"
 AWS_CREDENTIALS_SRC="/vagrant/shared/credentials"
 AWS_CREDENTIALS_DEST="$AWS_CONFIG_DIR/credentials"
+#end
 
 EC='\033[0;31m'
 NC='\033[0m' # No Color
 
+#if( $optionTerraform=="y" )
 if [ ! -f "$AWS_CREDENTIALS_SRC" ]; then
   echo ' ______ _____  _____   ____  _____'
   echo '|  ____|  __ \|  __ \ / __ \|  __ \'
@@ -31,6 +34,7 @@ mkdir -p $AWS_CONFIG_DIR
 chmod 0700 $AWS_CONFIG_DIR
 cp "$AWS_CREDENTIALS_SRC" "$AWS_CREDENTIALS_DEST"
 chmod -R 0600 $AWS_CONFIG_DIR/*
+#end
 
 echo "Change ownership on projects dir"
 sudo chown -R vagrant:vagrant "$PROJECTS_DIR"
