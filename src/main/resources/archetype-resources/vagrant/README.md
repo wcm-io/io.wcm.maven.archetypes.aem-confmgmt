@@ -25,7 +25,7 @@ plugins
     vagrant plugin install vagrant-vbguest
 
 ${symbol_pound}${symbol_pound}${symbol_pound} Provide vault password
-    
+
     cd vagrant/shared
     cp .vault_pass.default .vault_pass
     ${symbol_pound} place the Ansible Vault password in .vault_pass
