@@ -32,8 +32,9 @@ fi
 if [ ! -f "$ANSIBLE_VAULT_PASS_DEST" ]; then
   echo "Provision .vault_pass for Ansible Vault"
   cp "$ANSIBLE_VAULT_PASS_SRC" "$ANSIBLE_VAULT_PASS_DEST"
-  chmod 0600 $ANSIBLE_VAULT_PASS_DEST
 fi
+
+chmod 0600 $ANSIBLE_VAULT_PASS_DEST
 
 if [ -f "$ANSIBLE_VAULT_PASS_SRC" ]; then
   echo "Deleting Ansible Vault password file from host"
