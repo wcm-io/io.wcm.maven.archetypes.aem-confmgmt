@@ -32,7 +32,7 @@ if [ ! -f "$ANSIBLE_VAULT_PASS_SRC" ]; then
 fi
 
 #if( $optionTerraform=="y" )
-if [ ! -f "$AWS_CREDENTIALS_SRC" ]; then
+if [ ! -f "$AWS_CREDENTIALS_SRC" -a ! -f "$AWS_CREDENTIALS_DEST" ]; then
   echo ' ______ _____  _____   ____  _____'
   echo '|  ____|  __ \|  __ \ / __ \|  __ \'
   echo '| |__  | |__) | |__) | |  | | |__) |'
@@ -41,7 +41,7 @@ if [ ! -f "$AWS_CREDENTIALS_SRC" ]; then
   echo '|______|_|  \_\_|  \_\\____/|_|  \_\'
   echo -e "${EC}"
   echo "AWS credentials file not found!"
-  echo "Make sure to place/configure the file 'credentials' at 'vagrant/shared'."
+  echo "Make sure to place/configure the file 'credentials' at 'vagrant/shared' or to enter the credentials on provisioning."
   echo "See README.md for details."
   echo -e "${NC}"
   exit 2
@@ -54,12 +54,19 @@ cp "$ANSIBLE_VAULT_PASS_SRC" "$ANSIBLE_VAULT_PASS_DEST"
 chmod 0600 $ANSIBLE_VAULT_PASS_DEST
 
 #if( $optionTerraform=="y" )
-# copy aws credentials
-echo "Provision AWS credentials"
-mkdir -p $AWS_CONFIG_DIR
+if [ ! -f "$AWS_CREDENTIALS_DEST" ]; then
+  echo "Provision AWS credentials"
+  mkdir -p $AWS_CONFIG_DIR
+  cp "$AWS_CREDENTIALS_SRC" "$AWS_CREDENTIALS_DEST"
+fi
+
 chmod 0700 $AWS_CONFIG_DIR
-cp "$AWS_CREDENTIALS_SRC" "$AWS_CREDENTIALS_DEST"
 chmod -R 0600 $AWS_CONFIG_DIR/*
+
+if [ -f "$AWS_CREDENTIALS_SRC" ]; then
+  echo "Deleting AWS credentials file from host"
+  rm "$AWS_CREDENTIALS_SRC"
+fi
 
 #end
 echo "Change ownership on projects dir"

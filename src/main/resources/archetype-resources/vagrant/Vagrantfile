@@ -11,6 +11,8 @@ CPUEXECUTIONCAP = 80
 RSYNC_EXCLUDES = [".git/",".idea/","target/"]
 
 HOSTNAME = "${configurationManagementName.replace('.','-')}-controlhost"
+AWS_CREDENTIALS_SRC="shared/credentials"
+AWS_CREDENTIALS_DEST="/home/vagrant/.aws/credentials"
 
 # ssh port
 SSH_PORT = 22022
@@ -46,6 +48,37 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # set vm name
     vb.name = HOSTNAME
+  end
+
+  class CredentialPrompt
+    def initialize( msg )
+      @msg = msg
+    end
+    def to_s
+      begin
+        system 'stty -echo'
+        print @msg
+        pass = URI.escape(STDIN.gets.chomp)
+      ensure
+        system 'stty echo'
+      end
+        print "\n"
+      pass
+    end
+  end
+
+  # read aws credentials file when not already configured
+  if !File.exist?(AWS_CREDENTIALS_SRC)
+    config.vm.provision "shell", privileged: false,
+    env: {
+      "FILE_PATH" => AWS_CREDENTIALS_DEST,
+      "AWS_ACCESS_KEY_ID" => CredentialPrompt.new("Enter the AWS Access Key ID: "),
+      "AWS_SECRET_ACCESS_KEY" => CredentialPrompt.new("Enter the AWS Secret Access Key: "),
+      },
+    inline: <<-SHELL
+      mkdir -p /home/vagrant/.aws && touch $FILE_PATH
+      echo -e "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}\n" > $FILE_PATH
+    SHELL
   end
 
   # provision base (credendials and basic os packages)
