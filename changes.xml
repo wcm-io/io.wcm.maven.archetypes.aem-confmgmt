@@ -24,6 +24,9 @@
   <body>
 
     <release version="1.2.0" date="not released">
+      <action type="update" dev="sseifert">
+        AEM Crypto Keys: Do not decrypt them during configuration generation, this is done by Ansible automatically.
+      </action>
       <action type="update" dev="nbellack">
         Update Ansible version to 2.7.13.
       </action>
