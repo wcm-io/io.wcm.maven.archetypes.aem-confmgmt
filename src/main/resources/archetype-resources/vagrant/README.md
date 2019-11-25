@@ -33,6 +33,8 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Provide vault password
 If you do not provide the `.vault_pass` file, Vagrant will ask you to enter the password interactively and will then place it at the correct path in the control host VM (which is `/home/vagrant/.ansible/.vault_pass`).
 If you provide the file via `vagrant/shared/.vault_pass`, the file will be deleted from your host afterwards.
 
+After successful vault password provision, a file `.provision_done` will be created in the `shared` folder. This file tells Vagrant that provisioning of the Ansible vault password was performed successfully.
+
 ${symbol_pound}${symbol_pound}${symbol_pound} Provide AWS credentials
 
     cd vagrant/shared

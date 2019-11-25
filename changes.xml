@@ -24,7 +24,6 @@
   <body>
 
     <release version="1.2.0" date="not released">
-
       <action type="add" dev="nbellack">
         Interactively ask for Ansible Vault password on Vagrant provision if the file is not provided.
       </action>
