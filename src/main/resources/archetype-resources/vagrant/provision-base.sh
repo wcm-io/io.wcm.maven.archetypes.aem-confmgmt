@@ -83,3 +83,7 @@ fi
 # update distribution to avoid package conflicts during XMP dependency installation
 echo "OS Update"
 sudo yum update -y
+
+# place file in shared folder to signalize vagrant that provision was performed successfully
+echo "creating .provision_done file"
+touch /vagrant/shared/.provision_done

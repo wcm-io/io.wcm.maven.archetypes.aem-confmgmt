@@ -68,7 +68,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # read ansible vault password file when not already configured
-  if !File.exist?(ANSIBLE_VAULT_PASS_SRC)
+  if !File.exist?(ANSIBLE_VAULT_PASS_SRC) && !File.exist?("shared/.provision_done")
     config.vm.provision "shell", privileged: false,
     env: {
       "FILE_PATH" => ANSIBLE_VAULT_PASS_DEST,
