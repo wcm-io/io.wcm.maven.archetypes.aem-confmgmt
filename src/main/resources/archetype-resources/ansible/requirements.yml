@@ -8,9 +8,13 @@
 # wcm-io-devops requirements
 #
 - name: wcm_io_devops.aem_cms
-  version: 1.2.0
+  src: https://github.com/wcm-io-devops/ansible-aem-cms.git
+  version: feature/centos8_support
+  #version: 1.2.0
 - name: wcm_io_devops.aem_dispatcher
-  version: 1.3.0
+  src: https://github.com/wcm-io-devops/ansible-aem-dispatcher.git
+  version: feature/update_dispatcher_version
+  #version: 1.3.0
 - name: wcm_io_devops.aem_dispatcher_flush
   version: 1.2.0
 - name: wcm_io_devops.aem_security
@@ -32,7 +36,7 @@
 - name: wcm_io_devops.conga_aem_smoke_test
   version: 1.0.2
 - name: wcm_io_devops.conga_ansible_controlhost
-  version: 2.3.0
+  version: 2.4.0
 - name: wcm_io_devops.conga_maven
   version: 1.1.0
 - name: wcm_io_devops.conga_facts
@@ -42,4 +46,6 @@
 - name: wcm_io_devops.conga_host_facts
   version: 1.1.0
 - name: wcm_io_devops.apache
-  version: 3.1.0-1
+  src: https://github.com/wcm-io-devops/ansible-role-apache.git
+  #version: 3.1.0-1
+  version: feature/centos8_support

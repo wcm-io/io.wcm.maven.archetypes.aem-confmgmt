@@ -6,3 +6,5 @@ controlhost_maven_repositories:
     url: "{{ maven_repository_url }}"
     username: "{{ vault_maven_repository_username }}"
     password: "{{ vault_maven_repository_password }}"
+
+controlhost_packages_pip_upgrade: false

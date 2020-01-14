@@ -3,6 +3,7 @@ set -e
 
 HOME_DIR="/home/vagrant"
 PROJECTS_DIR="/home/vagrant/projects"
+ANSIBLE_VERSION="2.7.13"
 ANSIBLE_DIR="$HOME/.ansible"
 ANSIBLE_VAULT_PASS_DEST="$ANSIBLE_DIR/.vault_pass"
 ANSIBLE_VAULT_PASS_SRC="/vagrant/shared/.vault_pass"
@@ -50,6 +51,7 @@ fi
 #end
 echo "Provision .vault_pass for Ansible Vault"
 # copy vault pass
+mkdir -p "$ANSIBLE_DIR"
 cp "$ANSIBLE_VAULT_PASS_SRC" "$ANSIBLE_VAULT_PASS_DEST"
 chmod 0600 $ANSIBLE_VAULT_PASS_DEST
 
@@ -67,16 +69,16 @@ sudo chown -R vagrant:vagrant "$PROJECTS_DIR"
 
 # install git
 echo "Install GIT for Ansible Galaxy"
-sudo yum install git -y -q
+sudo dnf install git -y -q
 
-# install pip
-if ! [ -x "$(command -v pip)" ]; then
-  echo 'pip is not installed, installing' >&2
-  sudo curl -s https://bootstrap.pypa.io/get-pip.py | sudo python 2>&1
-else
-  echo 'pip is already installed'
-fi
+# install python3 and pip3
+echo "Install Python3/pip3"
+sudo dnf install -y -q python3 python3-pip
+
+# install ansible
+echo "Install Ansible"
+sudo -H python3 -m pip install -q --upgrade ansible==$ANSIBLE_VERSION
 
 # update distribution to avoid package conflicts during XMP dependency installation
 echo "OS Update"
-sudo yum update -y
+sudo dnf update -y -q

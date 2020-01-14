@@ -17,7 +17,7 @@ SSH_PORT = 22022
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "geerlingguy/centos7"
+  config.vm.box = "centos/8"
   config.vm.hostname = HOSTNAME
 
   # forward your agent to machine
@@ -54,8 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # provision controlhost
   config.vm.provision "ansible_local" do |ansible|
     ansible.provisioning_path = "/home/vagrant/projects/${configurationManagementName}/ansible"
-    ansible.install_mode = "pip"
-    ansible.version = "2.7.13"
+    ansible.install = "false"
     ansible.compatibility_mode = "2.0"
     # galaxy settings
     ansible.galaxy_role_file = "requirements.yml"

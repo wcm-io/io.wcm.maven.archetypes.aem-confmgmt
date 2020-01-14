@@ -1,4 +1,4 @@
-aem_dispatcher_version: 4.2.3
+aem_dispatcher_version: 4.3.3
 
 # Install aem-dispatcher from maven_repository
 aem_dispatcher_install_source: maven_repository

@@ -7,7 +7,7 @@ java_version: ${javaMajorVersion}
 #if( $javaMinorVersion!="0" )
 
 # java minor version
-java_subversion: ${javaMinorVersion}
+java_subversion: "${javaMinorVersion}"
 #end
 #if( $javaDownloadBaseUrl!="auto" )
 
