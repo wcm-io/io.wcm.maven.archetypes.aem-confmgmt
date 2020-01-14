@@ -3,7 +3,7 @@ set -e
 
 HOME_DIR="/home/vagrant"
 PROJECTS_DIR="/home/vagrant/projects"
-ANSIBLE_VERSION="2.7.13"
+ANSIBLE_VERSION="2.9.2"
 ANSIBLE_DIR="$HOME/.ansible"
 ANSIBLE_VAULT_PASS_DEST="$ANSIBLE_DIR/.vault_pass"
 ANSIBLE_VAULT_PASS_SRC="/vagrant/shared/.vault_pass"
