@@ -39,6 +39,8 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Provide AWS credentials
 If you do not provide the `credentials` file, Vagrant will ask you to enter the AWS credentials interactively and will then place it at the correct path in the control host VM (which is `/home/vagrant/.aws/credentials`).
 If you provide the file via `vagrant/shared/credentials`, the file will be deleted from your host afterwards.
 
+After successful AWS credentials provision, a file `.provision_aws_done` will be created in the `shared` folder. This file tells Vagrant that provisioning of the AWS credentials was performed successfully.
+
 ${symbol_pound}${symbol_pound}${symbol_pound} Check if the project ssh key is provided by your key agent
 
     ssh-add -L
