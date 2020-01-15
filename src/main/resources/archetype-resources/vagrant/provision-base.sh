@@ -3,7 +3,7 @@ set -e
 
 HOME_DIR="/home/vagrant"
 PROJECTS_DIR="/home/vagrant/projects"
-ANSIBLE_VERSION="2.9.2"
+ANSIBLE_VERSION="2.7.13"
 ANSIBLE_DIR="$HOME/.ansible"
 ANSIBLE_VAULT_PASS_DEST="$ANSIBLE_DIR/.vault_pass"
 ANSIBLE_VAULT_PASS_SRC="/vagrant/shared/.vault_pass"
@@ -74,6 +74,10 @@ sudo dnf install git -y -q
 # install python3 and pip3
 echo "Install Python3/pip3"
 sudo dnf install -y -q python3 python3-pip
+
+# Symlink python3 to python since automatic Python backend discovery is not supported in Ansible 2.7.13
+echo "Symlink /usr/bin/python3 to /usr/bin/python"
+sudo ln -s -f /usr/bin/python3 /usr/bin/python
 
 # install ansible
 echo "Install Ansible"
