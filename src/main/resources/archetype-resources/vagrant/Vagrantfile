@@ -11,8 +11,10 @@ CPUEXECUTIONCAP = 80
 RSYNC_EXCLUDES = [".git/",".idea/","target/"]
 
 HOSTNAME = "${configurationManagementName.replace('.','-')}-controlhost"
+#if( $optionTerraform=="y" )
 AWS_CREDENTIALS_SRC="shared/credentials"
 AWS_CREDENTIALS_DEST="/home/vagrant/.aws/credentials"
+#end
 
 # ssh port
 SSH_PORT = 22022
@@ -67,8 +69,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+#if( $optionTerraform=="y" )
   # read aws credentials file when not already configured
-  if !File.exist?(AWS_CREDENTIALS_SRC)
+  if !File.exist?(AWS_CREDENTIALS_SRC) && !File.exist?("shared/.provision_aws_done")
     config.vm.provision "shell", privileged: false,
     env: {
       "FILE_PATH" => AWS_CREDENTIALS_DEST,
@@ -81,6 +84,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     SHELL
   end
 
+#end
   # provision base (credendials and basic os packages)
   config.vm.provision "shell", path: "provision-base.sh", privileged: false
 

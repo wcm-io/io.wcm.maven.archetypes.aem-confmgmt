@@ -87,3 +87,7 @@ fi
 # update distribution to avoid package conflicts during XMP dependency installation
 echo "OS Update"
 sudo yum update -y
+
+# place file in shared folder to signalize vagrant that AWS provision was performed successfully
+echo "creating .provision_aws_done file"
+touch /vagrant/shared/.provision_aws_done
