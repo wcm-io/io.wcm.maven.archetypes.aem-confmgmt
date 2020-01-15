@@ -26,6 +26,14 @@
     <release version="1.2.0" date="not released">
       <action type="add" dev="nbellack">
         Interactively ask for AWS credentials on Vagrant provision if the file is not provided.
+      <action type="update" dev="sseifert">
+        AEM Crypto Keys: Do not decrypt them during configuration generation, this is done by Ansible automatically.
+      </action>
+      <action type="update" dev="nbellack">
+        Update Ansible version to 2.7.13.
+      </action>
+      <action type="update" dev="trichter">
+        Update Ansible roles to latest releases.
       </action>
     </release>
 

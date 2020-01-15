@@ -13,6 +13,6 @@ config:
   crypto:
 #if ($optionAnsible=="y")
     # URLs of crypto keys to be deployed to AEM (as bundle files)
-    aesCryptoKeyUrl: ansible-vault:classpath:/crypto/master
-    hmacCryptoKeyUrl: ansible-vault:classpath:/crypto/hmac
+    aesCryptoKeyUrl: classpath:/crypto/master
+    hmacCryptoKeyUrl: classpath:/crypto/hmac
 #end
