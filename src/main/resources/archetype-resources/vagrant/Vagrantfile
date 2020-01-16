@@ -11,6 +11,8 @@ CPUEXECUTIONCAP = 80
 RSYNC_EXCLUDES = [".git/",".idea/","target/"]
 
 HOSTNAME = "${configurationManagementName.replace('.','-')}-controlhost"
+ANSIBLE_VAULT_PASS_SRC = "shared/.vault_pass"
+ANSIBLE_VAULT_PASS_DEST = "/home/vagrant/.ansible/.vault_pass"
 
 # ssh port
 SSH_PORT = 22022
@@ -46,6 +48,36 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # set vm name
     vb.name = HOSTNAME
+  end
+
+  class CredentialPrompt
+    def initialize( msg )
+      @msg = msg
+    end
+    def to_s
+      begin
+        system 'stty -echo'
+        print @msg
+        pass = URI.escape(STDIN.gets.chomp)
+      ensure
+        system 'stty echo'
+      end
+        print "\n"
+      pass
+    end
+  end
+
+  # read ansible vault password file when not already configured
+  if !File.exist?(ANSIBLE_VAULT_PASS_SRC) && !File.exist?("shared/.provision_done")
+    config.vm.provision "shell", privileged: false,
+    env: {
+      "FILE_PATH" => ANSIBLE_VAULT_PASS_DEST,
+      "ANSIBLE_VAULT_PASSWORD" => CredentialPrompt.new("Enter the Ansible Vault Password: ")
+      },
+    inline: <<-SHELL
+      touch $FILE_PATH
+      echo "$ANSIBLE_VAULT_PASSWORD" > $FILE_PATH
+    SHELL
   end
 
   # provision base (credendials and basic os packages)
