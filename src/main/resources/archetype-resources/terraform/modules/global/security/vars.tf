@@ -1,5 +1,5 @@
 variable "cidr_blocks_ingress" {
-  type = "list"
+  type = list(string)
   default = [
 #foreach( $ip in $accessRestrictionIpAddress.split(",") )
     "$ip",

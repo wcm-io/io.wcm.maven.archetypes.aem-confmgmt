@@ -1,6 +1,7 @@
 # Query latest CentOS 7 AMI
-data "aws_ami" "centos7" {
+data "aws_ami" "centos" {
   most_recent = true
+  owners = ["679593333241"]
 
   filter {
     name   = "owner-alias"

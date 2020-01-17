@@ -1,11 +1,8 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 resource "aws_instance" "aem" {
   count = var.instance_count
   ami = var.centos7_ami_id
   instance_type = var.instance_type
-  vpc_security_group_ids = [var.vpc_security_group_ids]
+  vpc_security_group_ids = ["var.vpc_security_group_ids"]
   iam_instance_profile = var.instance_profile_name
   key_name = var.key_name
   user_data = var.user_data
@@ -13,7 +10,7 @@ resource "aws_instance" "aem" {
     volume_size = var.volume_size
   }
 
-  tags {
+  tags = {
     Name = "${var.environment}_${var.instance_name}"
     Project = var.project
     Role = "aem"
@@ -26,12 +23,12 @@ resource "aws_instance" "aem" {
     Env = var.environment
   }
 
-  volume_tags {
+  volume_tags = {
     Project = var.project
     Name = "${var.environment}_${var.instance_name}"
   }
 
   lifecycle {
-    ignore_changes = ["user_data", "ami"]
+    ignore_changes = [user_data, ami]
   }
 }
