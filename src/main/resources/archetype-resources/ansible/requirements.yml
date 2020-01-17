@@ -32,7 +32,9 @@
 - name: wcm_io_devops.conga_aem_smoke_test
   version: 1.0.2
 - name: wcm_io_devops.conga_ansible_controlhost
-  version: 2.4.0
+  #version: 2.4.0
+  src: https://github.com/wcm-io-devops/ansible-conga-ansible-controlhost.git
+  version: feature/terraform_improvements
 - name: wcm_io_devops.conga_maven
   version: 1.1.0
 - name: wcm_io_devops.conga_facts

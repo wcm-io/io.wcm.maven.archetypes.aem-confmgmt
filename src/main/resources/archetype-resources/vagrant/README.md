@@ -73,12 +73,6 @@ The base directory on the VM is:
 `/home/vagrant/projects/${configurationManagementName}`
 
 
-${symbol_pound}${symbol_pound} rsync to vagrant on change
-
-If you want to constanly push changes to the VM run
-
-    vagrant rsync-auto
-
 
 
 [vagrant]: https://www.vagrantup.com/

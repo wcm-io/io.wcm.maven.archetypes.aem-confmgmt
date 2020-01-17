@@ -6,7 +6,7 @@ Terraform Definition
 
 ${symbol_pound}${symbol_pound} Overview
 
-This project used [HashiCorp Terraform][terraform] to describe the required infrastructure for the AEM environments and set it up in AWS.
+This project uses [HashiCorp Terraform][terraform] to describe the required infrastructure for the AEM environments and set it up in AWS.
 
 The definitions contains the machines for DEV and PROD environment.
 
