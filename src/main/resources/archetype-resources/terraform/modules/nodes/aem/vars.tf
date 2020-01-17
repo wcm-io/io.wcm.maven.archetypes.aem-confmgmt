@@ -31,7 +31,7 @@ variable "centos7_ami_id" {
 
 variable "vpc_security_group_ids" {
   default = []
-  type = "list"
+  type = list(string)
 }
 
 variable "instance_profile_name"{
@@ -48,28 +48,28 @@ variable "instance_name" {
 
 variable "conga_roles" {
   default = []
-  type= "list"
+  type = list(string)
 }
 
 # list of conga_nodes that are running on the instance
 variable "conga_nodes" {
   default = []
-  type = "list"
+  type = list(string)
 }
 
 variable "conga_variants" {
   default = []
-  type = "list"
+  type = list(string)
 }
 
 variable "conga_tenants" {
   default = []
-  type = "list"
+  type = list(string)
 }
 
 variable "conga_variant_node_mapping" {
   default = []
-  type = "list"
+  type = list(string)
 }
 
 variable "user_data" {

@@ -4,10 +4,10 @@ variable "centos7_ami_id" {
 
 variable "vpc_security_group_ids" {
   default = []
-  type = "list"
+  type = list(string)
 }
 
-variable "instance_profile_name"{
+variable "instance_profile_name" {
   default = "${configurationManagementName}-profile"
 }
 

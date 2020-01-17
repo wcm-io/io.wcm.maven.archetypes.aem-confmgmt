@@ -23,16 +23,16 @@ module "key_pair" {
 
 module "dev" {
   source = "./environments/dev"
-  centos7_ami_id = "${symbol_dollar}{module.ami.centos7_ami_id}"
-  vpc_security_group_ids = ["${symbol_dollar}{module.security.security_group_${configurationManagementName}_id}"]
-  instance_profile_name = "${symbol_dollar}{module.iam.instance_profile_name}"
-  user_data = "${symbol_dollar}{module.user_data.user_data}"
+  centos7_ami_id = module.ami.centos7_ami_id
+  vpc_security_group_ids = [module.security.security_group_${configurationManagementName}_id]
+  instance_profile_name = module.iam.instance_profile_name
+  user_data = module.user_data.user_data
 }
 
 module "prod" {
   source = "./environments/prod"
-  centos7_ami_id = "${symbol_dollar}{module.ami.centos7_ami_id}"
-  vpc_security_group_ids = ["${symbol_dollar}{module.security.security_group_${configurationManagementName}_id}"]
-  instance_profile_name = "${symbol_dollar}{module.iam.instance_profile_name}"
-  user_data = "${symbol_dollar}{module.user_data.user_data}"
+  centos7_ami_id = module.ami.centos7_ami_id
+  vpc_security_group_ids = [module.security.security_group_${configurationManagementName}_id]
+  instance_profile_name = module.iam.instance_profile_name
+  user_data = module.user_data.user_data
 }
