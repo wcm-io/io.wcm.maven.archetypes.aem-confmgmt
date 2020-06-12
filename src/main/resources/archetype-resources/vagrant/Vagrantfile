@@ -80,6 +80,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     SHELL
   end
 
+  # reset provisioning status on destroy
+  config.trigger.before :destroy do |trigger|
+    trigger.info = "Deleting '.provisioning_done' file"
+    trigger.run = {inline: "rm -f shared/.provision_done"}
+  end
+
   # provision base (credendials and basic os packages)
   config.vm.provision "shell", path: "provision-base.sh", privileged: false
 
