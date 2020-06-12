@@ -83,7 +83,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # reset provisioning status on destroy
   config.trigger.before :destroy do |trigger|
     trigger.info = "Deleting '.provisioning_done' file"
-    trigger.run = {inline: "rm -f shared/.provision_done"}
+    trigger.run = {inline: "bash -c 'rm -f shared/.provision_done'"}
   end
 
   # provision base (credendials and basic os packages)
