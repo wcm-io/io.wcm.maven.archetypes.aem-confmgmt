@@ -7,7 +7,8 @@ Maven Archetype for creating infrastructure deployment and configuration managem
 Documentation: https://wcm.io/tooling/maven/archetypes/aem-confmgmt/<br/>
 Issues: https://wcm-io.atlassian.net/browse/WTOOL<br/>
 Wiki: https://wcm-io.atlassian.net/wiki/<br/>
-Continuous Integration: https://travis-ci.org/wcm-io/wcm-io-maven-archetype-aem-confmgmt/
+Continuous Integration: https://travis-ci.org/wcm-io/wcm-io-maven-archetype-aem-confmgmt/<br/>
+Commercial support: https://wcm.io/commercial-support.html
 
 
 ## Build from sources
