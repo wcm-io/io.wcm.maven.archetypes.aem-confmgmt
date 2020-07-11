@@ -1,5 +1,7 @@
+@Grab(group="org.codehaus.groovy", module="groovy-xml", version="2.4.16")
 @Grab(group='io.wcm.devops.conga.plugins', module='conga-aem-crypto-cli', version='1.8.14')
 import groovy.io.FileType
+import groovy.util.XmlSlurper
 import java.util.regex.Pattern
 import java.util.regex.Matcher
 import java.nio.file.Files
@@ -9,6 +11,7 @@ import io.wcm.devops.conga.plugins.aem.tooling.crypto.cli.AnsibleVault
 
 def rootDir = new File(request.getOutputDirectory() + "/" + request.getArtifactId())
 def defaultFileReferenceDir = new File(request.getOutputDirectory())
+def configurationPom = new File(rootDir, "configuration/pom.xml")
 
 
 // read parameters
@@ -28,6 +31,17 @@ if (optionVagrant == "y" && optionAnsible != "y") {
 
 // remove root pom - not required
 assert new File(rootDir, "pom.xml").delete()
+
+
+// insert latest version of io.wcm.maven.aem-global-parent available on maven central
+def metadata = new XmlSlurper().parse("https://repo1.maven.org/maven2/io/wcm/maven/io.wcm.maven.aem-global-parent/maven-metadata.xml")
+def wcmioAemGlobalParentLatestVersion = metadata.versioning.latest.toString()
+assert wcmioAemGlobalParentLatestVersion != null && wcmioAemGlobalParentLatestVersion != ""
+def pomContent = configurationPom.getText("UTF-8")
+pomContent = pomContent.replaceAll("WCMIO_AEM_GLOBAL_PARENT_LATEST_VERSION", wcmioAemGlobalParentLatestVersion)
+configurationPom.newWriter("UTF-8").withWriter { w ->
+  w << pomContent
+}
 
 
 if (optionAnsible == "y") {
