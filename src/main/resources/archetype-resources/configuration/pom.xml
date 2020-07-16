@@ -6,7 +6,7 @@
   <parent>
     <groupId>io.wcm.maven</groupId>
     <artifactId>io.wcm.maven.aem-global-parent</artifactId>
-    <version>1.4.10</version>
+    <version>WCMIO_AEM_GLOBAL_PARENT_LATEST_VERSION</version>
     <relativePath/>
   </parent>
 

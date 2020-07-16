@@ -28,6 +28,17 @@
         Delete provisioning status file on vagrant destroy.
       </action>
     </release>
+    <release version="1.2.6" date="2020-07-11">
+      <action type="update" dev="sseifert">
+        Use latest version of io.wcm.maven.aem-global-parent when generating an new project.
+      </action>
+    </release>
+
+    <release version="1.2.4" date="2020-06-28">
+      <action type="update" dev="sseifert">
+        Update dependencies.
+      </action>
+    </release>
 
     <release version="1.2.2" date="2020-04-28">
       <action type="update" dev="sseifert">
