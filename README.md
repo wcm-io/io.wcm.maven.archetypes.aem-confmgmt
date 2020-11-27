@@ -1,13 +1,13 @@
 <img src="https://wcm.io/images/favicon-16@2x.png"/> wcm.io Maven Archetype for AEM Configuration Management
 ======
-[![Build Status](https://travis-ci.org/wcm-io/wcm-io-maven-archetype-aem-confmgmt.png?branch=develop)](https://travis-ci.org/wcm-io/wcm-io-maven-archetype-aem-confmgmt)
+[![Build Status](https://travis-ci.com/wcm-io/wcm-io-maven-archetype-aem-confmgmt.png?branch=develop)](https://travis-ci.com/wcm-io/wcm-io-maven-archetype-aem-confmgmt)
 
 Maven Archetype for creating infrastructure deployment and configuration management projects for AEM.
 
 Documentation: https://wcm.io/tooling/maven/archetypes/aem-confmgmt/<br/>
 Issues: https://wcm-io.atlassian.net/browse/WTOOL<br/>
 Wiki: https://wcm-io.atlassian.net/wiki/<br/>
-Continuous Integration: https://travis-ci.org/wcm-io/wcm-io-maven-archetype-aem-confmgmt/<br/>
+Continuous Integration: https://travis-ci.com/wcm-io/wcm-io-maven-archetype-aem-confmgmt/<br/>
 Commercial support: https://wcm.io/commercial-support.html
 
 
