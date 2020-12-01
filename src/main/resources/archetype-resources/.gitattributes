@@ -35,6 +35,7 @@
 *.sql text eol=lf
 *.svg text eol=lf
 *.tf text eol=lf
+*.ts text eol=lf
 *.txt text eol=lf
 *.vm text eol=lf
 *.xml text eol=lf
