@@ -6,6 +6,7 @@
 *.dtd text eol=lf
 *.esp text eol=lf
 *.ecma text eol=lf
+*.gdsl text eol=lf
 *.groovy text eol=lf
 *.hbrs text eol=lf
 *.hbs text eol=lf
