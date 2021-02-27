@@ -121,11 +121,9 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Requirements
 
 * JDK 1.8
 * Apache Maven 3.3.9 or higher
-* Include the [Adobe Public Maven Repository][adobe-public-maven-repo] in your maven settings, see [wcm.io Maven Repositories][wcmio-maven] for details.
 * **Important**: You have to manually upload the AEM Quickstart JAR and AEM dispatcher binaries to your Maven Artifact Manager following [these conventions][aem-binaries-conventions] for naming them.
 
 
-[adobe-public-maven-repo]: https://repo.adobe.com/nexus/content/groups/public/
 [wcmio-maven]: https://wcm.io/maven.html
 [aem-binaries-conventions]: https://wcm-io.atlassian.net/wiki/x/AYC9Aw
 [wcmio-samples]: https://wcm.io/samples/
