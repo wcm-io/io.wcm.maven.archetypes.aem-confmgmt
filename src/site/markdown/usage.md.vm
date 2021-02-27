@@ -9,7 +9,7 @@ ${symbol_pound}${symbol_pound}${symbol_pound} Basic usage
 Generate a new AEM project using interactive mode by executing:
 
 ```
-mvn archetype:generate \
+mvn org.apache.maven.plugins:maven-archetype-plugin:${project.properties['maven.archetype.version']}:generate \
   -DarchetypeGroupId=io.wcm.maven.archetypes \
   -DarchetypeArtifactId=io.wcm.maven.archetypes.aem-confmgmt \
   -DarchetypeVersion=${project.properties['releasedVersion.version']}
@@ -63,7 +63,7 @@ These examples use the [wcm.io Samples][wcmio-samples] project as sample AEM pro
 ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} Setup with Ansible, Terraform, Vagrant
 
 ```
-mvn archetype:generate -DinteractiveMode=false \
+mvn org.apache.maven.plugins:maven-archetype-plugin:${project.properties['maven.archetype.version']}:generate -DinteractiveMode=false \
   -DarchetypeGroupId=io.wcm.maven.archetypes \
   -DarchetypeArtifactId=io.wcm.maven.archetypes.aem-confmgmt \
   -DarchetypeVersion=${project.properties['releasedVersion.version']} \
@@ -92,7 +92,7 @@ You need to place additional files in the working directory where you execute th
 ${symbol_pound}${symbol_pound}${symbol_pound}${symbol_pound} Setup only with Ansible
 
 ```
-mvn archetype:generate -DinteractiveMode=false \
+mvn org.apache.maven.plugins:maven-archetype-plugin:${project.properties['maven.archetype.version']}:generate -DinteractiveMode=false \
   -DarchetypeGroupId=io.wcm.maven.archetypes \
   -DarchetypeArtifactId=io.wcm.maven.archetypes.aem-confmgmt \
   -DarchetypeVersion=${project.properties['releasedVersion.version']} \
