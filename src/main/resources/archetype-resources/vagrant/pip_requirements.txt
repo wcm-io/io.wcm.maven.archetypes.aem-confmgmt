@@ -1,0 +1,15 @@
+ansible==2.10.6
+markupsafe
+jmespath
+cffi
+cryptography>=2.5
+boto
+lxml
+boto3
+rsa
+colorama
+botocore
+s3transfer
+awscli
+paramiko
+virtualenv

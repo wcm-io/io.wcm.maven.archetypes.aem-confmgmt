@@ -69,22 +69,6 @@ chmod -R 0600 $AWS_CONFIG_DIR/*
 echo "Change ownership on projects dir"
 sudo chown -R vagrant:vagrant "$PROJECTS_DIR"
 
-# install git
-echo "Install GIT for Ansible Galaxy"
-sudo yum install git -y -q
-
-# install pip
-if ! [ -x "$(command -v pip)" ]; then
-  echo 'pip is not installed, installing' >&2
-  sudo curl -s https://bootstrap.pypa.io/get-pip.py | sudo python 2>&1
-else
-  echo 'pip is already installed'
-fi
-
-# update distribution to avoid package conflicts during XMP dependency installation
-echo "OS Update"
-sudo yum update -y
-
 # place file in shared folder to signalize vagrant that provision was performed successfully
 echo "creating .provision_done file"
 touch /vagrant/shared/.provision_done

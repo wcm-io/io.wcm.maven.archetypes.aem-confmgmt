@@ -19,7 +19,7 @@ SSH_PORT = 22022
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "geerlingguy/centos7"
+  config.vm.box = "ubuntu/focal64"
   config.vm.hostname = HOSTNAME
 
   # forward your agent to machine
@@ -87,15 +87,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     trigger.run = {inline: "bash -c 'rm -f shared/.provision_done'"}
   end
 
-  # provision base (credendials and basic os packages)
-  config.vm.provision "shell", path: "provision-base.sh", privileged: false
+  # provision as root
+  config.vm.provision "shell", path: "provision-as-root.sh", privileged: true
+  # provision as vagrant
+  config.vm.provision "shell", path: "provision-as-vagrant.sh", privileged: false
 
   # provision controlhost
   config.vm.provision "ansible_local" do |ansible|
     ansible.provisioning_path = "/home/vagrant/projects/${configurationManagementName}/ansible"
-    ansible.install_mode = "pip"
-    ansible.version = "2.7.13"
-    ansible.compatibility_mode = "2.0"
+    ansible.install_mode = "pip_args_only"
+    ansible.pip_install_cmd = "sudo apt-get install -y python3-pip && sudo ln -s -f /usr/bin/pip3 /usr/bin/pip"
+    ansible.pip_args = "-r /vagrant/pip_requirements.txt"
     # galaxy settings
     ansible.galaxy_role_file = "requirements.yml"
     ansible.galaxy_roles_path = "/home/vagrant/.ansible/roles"
