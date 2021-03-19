@@ -28,6 +28,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # define sync folders
   config.vm.synced_folder "../", "/home/vagrant/projects/${configurationManagementName}", create: false, type: "rsync", rsync__exclude: RSYNC_EXCLUDES, rsync__auto: true, rsync__args: ["--verbose", "--archive", "-z", "--copy-links"]
 
+  ## Mount ~/.m2/repository directory so that your Maven settings and repository gets reused in the VM
+  home_path = Vagrant::Util::Platform.windows? ? ENV['USERPROFILE'] : ENV['HOME']
+  config.vm.synced_folder home_path + '/.m2/repository', '/home/vagrant/.m2/repository', type: 'virtualbox', mount_options: ["dmode=770"]
+
   # forwarded ports
   config.vm.network :forwarded_port, guest: 22, host: SSH_PORT, id: 'ssh'
   config.vm.network :forwarded_port, guest: 8443, host: 8443, id: 'https'
