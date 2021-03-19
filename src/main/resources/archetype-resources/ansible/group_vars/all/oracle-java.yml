@@ -7,9 +7,12 @@ java_version: ${javaMajorVersion}
 #if( $javaMinorVersion!="0" )
 
 # java minor version
-java_subversion: ${javaMinorVersion}
+java_subversion: '${javaMinorVersion}'
 #end
 #if( $javaDownloadBaseUrl!="auto" )
+
+# specify download source
+java_download_from: mirror
 
 # mirror for jdk downloads
 java_mirror: ${javaDownloadBaseUrl}
