@@ -13,6 +13,10 @@ RSYNC_EXCLUDES = [".git/",".idea/","target/"]
 HOSTNAME = "${configurationManagementName.replace('.','-')}-controlhost"
 ANSIBLE_VAULT_PASS_SRC = "shared/.vault_pass"
 ANSIBLE_VAULT_PASS_DEST = "/home/vagrant/.ansible/.vault_pass"
+#if( $optionTerraform=="y" )
+AWS_CREDENTIALS_SRC="shared/credentials"
+AWS_CREDENTIALS_DEST="/home/vagrant/.aws/credentials"
+#end
 
 # ssh port
 SSH_PORT = 22022
@@ -70,6 +74,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       pass
     end
   end
+
+#if( $optionTerraform=="y" )
+  # read aws credentials file when not already configured
+  if !File.exist?(AWS_CREDENTIALS_SRC) && !File.exist?("shared/.provision_aws_done")
+    config.vm.provision "shell", privileged: false,
+    env: {
+      "FILE_PATH" => AWS_CREDENTIALS_DEST,
+      "AWS_ACCESS_KEY_ID" => CredentialPrompt.new("Enter the AWS Access Key ID: "),
+      "AWS_SECRET_ACCESS_KEY" => CredentialPrompt.new("Enter the AWS Secret Access Key: "),
+      },
+    inline: <<-SHELL
+      mkdir -p /home/vagrant/.aws && touch $FILE_PATH
+      echo -e "[default]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}\n" > $FILE_PATH
+    SHELL
+  end
+
+#end
 
   # read ansible vault password file when not already configured
   if !File.exist?(ANSIBLE_VAULT_PASS_SRC) && !File.exist?("shared/.provision_done")
