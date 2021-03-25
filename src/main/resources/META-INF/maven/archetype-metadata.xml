@@ -156,6 +156,7 @@
       </includes>
       <excludes>
         <exclude>ansible/inventory/ec2.py</exclude>
+        <exclude>vagrant/provision-as-root.sh</exclude>
       </excludes>
     </fileSet>
     <fileSet encoding="UTF-8">
@@ -164,6 +165,7 @@
         <include>.gitattributes</include>
         <include>.gitignore</include>
         <include>ansible/inventory/ec2.py</include>
+        <include>vagrant/provision-as-root.sh</include>
       </includes>
     </fileSet>
   </fileSets>
