@@ -40,4 +40,4 @@ jobs:
 
       # Build & verify
       - name: Build and verify
-        run: mvn -s ./.maven-settings.xml -Pcontinuous-integration -B -U -Darchetype.test.settingsFile=./.maven-settings.xml -Dgroovy.grape.report.downloads=true clean verify
+        run: ./mvnw -s ./.maven-settings.xml -Pcontinuous-integration -B -U -Darchetype.test.settingsFile=./.maven-settings.xml -Dgroovy.grape.report.downloads=true clean verify
