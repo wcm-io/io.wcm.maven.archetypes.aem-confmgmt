@@ -16,7 +16,16 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        java: [11]
+        os: [ ubuntu-latest ]
+        include:
+          - java: 11
+            os: windows-latest
+          - java: 11
+            os: macos-latest
 
     steps:
       # Check out Git repository
@@ -27,7 +36,7 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: ${{ matrix.java }}
 
       # Set up dependency cache
       - name: Cache local Maven repository
@@ -40,4 +49,4 @@ jobs:
 
       # Build & verify
       - name: Build and verify
-        run: ./mvnw -s ./.maven-settings.xml -Pcontinuous-integration -B -U -Darchetype.test.settingsFile=./.maven-settings.xml -Dgroovy.grape.report.downloads=true clean verify
+        run: ./mvnw -s ./.maven-settings.xml -Pcontinuous-integration -B -U -D"archetype.test.settingsFile=./.maven-settings.xml" -D"groovy.grape.report.downloads=true" clean verify
