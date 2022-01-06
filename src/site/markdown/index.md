@@ -29,6 +29,11 @@ Features:
 See [Usage][usage] for a detailed documentation.
 
 
+### GitHub Repository
+
+Sources: https://github.com/wcm-io/io.wcm.maven.archetypes.aem-confmgmt
+
+
 ### Further Resources
 
 * [adaptTo() 2018 Talk: Maven Archetypes for AEM][adaptto-talk-2018-aem-archetypes]
