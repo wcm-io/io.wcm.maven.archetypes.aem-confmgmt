@@ -46,15 +46,15 @@
   </properties>
 
   <scm>
-    <connection>scm:git:https://github.com/wcm-io/wcm-io-maven-archetype-aem-confmgmt.git</connection>
-    <developerConnection>scm:git:https://github.com/wcm-io/wcm-io-maven-archetype-aem-confmgmt.git</developerConnection>
-    <url>https://github.com/wcm-io/wcm-io-maven-archetype-aem-confmgmt</url>
+    <connection>scm:git:https://github.com/wcm-io/io.wcm.maven.archetypes.aem-confmgmt.git</connection>
+    <developerConnection>scm:git:https://github.com/wcm-io/io.wcm.maven.archetypes.aem-confmgmt.git</developerConnection>
+    <url>https://github.com/wcm-io/io.wcm.maven.archetypes.aem-confmgmt</url>
     <tag>HEAD</tag>
   </scm>
 
   <ciManagement>
     <system>GitHub Actions</system>
-    <url>https://github.com/wcm-io/wcm-io-maven-archetype-aem-confmgmt/actions</url>
+    <url>https://github.com/wcm-io/io.wcm.maven.archetypes.aem-confmgmt/actions</url>
   </ciManagement>
   
   <dependencies>
