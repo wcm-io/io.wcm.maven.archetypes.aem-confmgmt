@@ -1,4 +1,3 @@
-@Grab(group="org.codehaus.groovy", module="groovy-xml", version="2.4.21")
 @Grab(group='io.wcm.devops.conga.plugins', module='conga-aem-crypto-cli', version='1.14.0')
 import groovy.io.FileType
 import groovy.util.XmlSlurper
