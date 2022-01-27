@@ -31,6 +31,7 @@ fi
 
 if [ ! -f "$ANSIBLE_VAULT_PASS_DEST" ]; then
   echo "Provision .vault_pass for Ansible Vault"
+  mkdir -p `dirname $ANSIBLE_VAULT_PASS_DEST`
   cp "$ANSIBLE_VAULT_PASS_SRC" "$ANSIBLE_VAULT_PASS_DEST"
 fi
 

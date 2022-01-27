@@ -3,7 +3,7 @@
   #%L
   wcm.io
   %%
-  Copyright (C) 2018 wcm.io
+  Copyright (C) 2014 wcm.io
   %%
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -33,45 +33,6 @@
           <id>central</id>
           <url>https://repo1.maven.org/maven2/</url>
           <layout>default</layout>
-          <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </repository>
-
-        <repository>
-          <id>adobe-public-releases</id>
-          <name>Adobe Public Repository</name>
-          <url>https://repo.adobe.com/nexus/content/groups/public/</url>
-          <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </repository>
-
-        <repository>
-          <id>wcm-io-apache-intermediate-release</id>
-          <url>https://wcm.io/maven/repositories/apache-intermediate-release</url>
-          <layout>default</layout>
-          <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </repository>
-
-        <repository>
-          <id>netbeans-releases</id>
-          <name>Netbeans Repository</name>
-          <url>http://bits.netbeans.org/nexus/content/groups/netbeans</url>
           <releases>
             <enabled>true</enabled>
             <updatePolicy>never</updatePolicy>
@@ -125,32 +86,6 @@
         </pluginRepository>
 
         <pluginRepository>
-          <id>adobe-public-releases</id>
-          <name>Adobe Public Repository</name>
-          <url>https://repo.adobe.com/nexus/content/groups/public/</url>
-          <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </pluginRepository>
-
-        <pluginRepository>
-          <id>wcm-io-apache-intermediate-release</id>
-          <url>https://wcm.io/maven/repositories/apache-intermediate-release</url>
-          <layout>default</layout>
-          <releases>
-            <enabled>true</enabled>
-            <updatePolicy>never</updatePolicy>
-          </releases>
-          <snapshots>
-            <enabled>false</enabled>
-          </snapshots>
-        </pluginRepository>
-
-        <pluginRepository>
           <id>oss-snapshots</id>
           <url>https://oss.sonatype.org/content/repositories/snapshots</url>
           <layout>default</layout>
@@ -185,5 +120,13 @@
   <activeProfiles>
     <activeProfile>default</activeProfile>
   </activeProfiles>
+
+  <servers>
+    <server>
+      <id>ossrh</id>
+      <username>${env.SONATYPE_USERNAME}</username>
+      <password>${env.SONATYPE_PASSWORD}</password>
+    </server>
+  </servers>
 
 </settings>

@@ -75,9 +75,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       "ANSIBLE_VAULT_PASSWORD" => CredentialPrompt.new("Enter the Ansible Vault Password: ")
       },
     inline: <<-SHELL
+      mkdir -p `dirname $FILE_PATH`
       touch $FILE_PATH
       echo "$ANSIBLE_VAULT_PASSWORD" > $FILE_PATH
     SHELL
+  end
+
+  # reset provisioning status on destroy
+  config.trigger.before :destroy do |trigger|
+    trigger.info = "Deleting '.provisioning_done' file"
+    trigger.run = {inline: "bash -c 'rm -f shared/.provision_done'"}
   end
 
   # provision base (credendials and basic os packages)
