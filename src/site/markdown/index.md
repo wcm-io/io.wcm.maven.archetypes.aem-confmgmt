@@ -3,7 +3,7 @@ About Maven Archetype for AEM Configuration Management
 
 Maven Archetype for creating infrastructure deployment and configuration management projects for AEM.
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.wcm.maven.archetypes/io.wcm.maven.archetypes.aem-confmgmt/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.wcm.maven.archetypes/io.wcm.maven.archetypes.aem-confmgmt)
+[![Maven Central](https://img.shields.io/maven-central/v/io.wcm.maven.archetypes/io.wcm.maven.archetypes.aem-confmgmt)](https://repo1.maven.org/maven2/io/wcm/maven/archetypes/io.wcm.maven.archetypes.aem-confmgmt)
 
 
 ### Documentation
