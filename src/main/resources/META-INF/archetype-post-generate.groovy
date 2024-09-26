@@ -1,4 +1,5 @@
-@Grab(group='io.wcm.devops.conga.plugins', module='conga-aem-crypto-cli', version='1.14.0')
+@Grab(group="org.codehaus.groovy", module="groovy-xml", version="3.0.22")
+@Grab(group='io.wcm.devops.conga.plugins', module='conga-aem-crypto-cli', version='2.20.0')
 import groovy.io.FileType
 import groovy.util.XmlSlurper
 import java.util.regex.Pattern
