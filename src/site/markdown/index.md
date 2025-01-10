@@ -41,7 +41,7 @@ Sources: https://github.com/wcm-io/io.wcm.maven.archetypes.aem-confmgmt
 
 
 [usage]: usage.html
-[changelog]: changes-report.html
+[changelog]: changes.html
 [aem-archetype]: ../aem/
 [conga]: https://devops.wcm.io/conga/
 [aem-ansible]: https://devops.wcm.io/ansible-aem/
