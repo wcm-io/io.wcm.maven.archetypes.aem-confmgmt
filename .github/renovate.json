@@ -15,7 +15,7 @@
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}maven{{/if}}",
       "fileMatch": ["(^|/)archetype-post-generate\\.groovy$"],
       "matchStrings": [
-        "//\\s??renovate:( datasource=(?<datasource>[a-z-.]+?))? depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+<(.+\\.)?version>(?<currentValue>.+)<\\/(.+\\.)?version>"
+        "\\/\\/\\s??renovate:( datasource=(?<datasource>[a-z-.]+?))? depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+<(.+\\.)?version>(?<currentValue>.+)<\\/(.+\\.)?version>"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}maven{{/if}}"
     }
