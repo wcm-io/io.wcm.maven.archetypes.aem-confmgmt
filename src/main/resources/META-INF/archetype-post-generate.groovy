@@ -1,4 +1,3 @@
-@Grab(group="org.apache.groovy", module="groovy-xml", version="4.0.23")
 // renovate: depName=io.wcm.devops.conga.plugins:conga-aem-crypto-cli
 @Grab(group="io.wcm.devops.conga.plugins", module="conga-aem-crypto-cli", version="2.20.2")
 import groovy.io.FileType
