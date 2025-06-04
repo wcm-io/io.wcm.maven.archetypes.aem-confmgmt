@@ -1,6 +1,7 @@
-@Grab(group='io.wcm.devops.conga.plugins', module='conga-aem-crypto-cli', version='1.14.0')
+// renovate: depName=io.wcm.devops.conga.plugins:conga-aem-crypto-cli
+@Grab(group="io.wcm.devops.conga.plugins", module="conga-aem-crypto-cli", version="2.20.2")
 import groovy.io.FileType
-import groovy.util.XmlSlurper
+import groovy.xml.XmlSlurper
 import java.util.regex.Pattern
 import java.util.regex.Matcher
 import java.nio.file.Files
