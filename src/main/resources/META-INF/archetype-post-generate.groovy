@@ -1,3 +1,4 @@
+@GrabResolver(name='central', root='https://repo.maven.apache.org/maven2/')
 // renovate: depName=io.wcm.devops.conga.plugins:conga-aem-crypto-cli
 @Grab(group="io.wcm.devops.conga.plugins", module="conga-aem-crypto-cli", version="2.20.2")
 import groovy.io.FileType
